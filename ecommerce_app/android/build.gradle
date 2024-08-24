@@ -1,0 +1,39 @@
+
+buildscript {
+    ext {
+        kotlin_version = '1.9.0'
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// Define the root project's build directory
+rootProject.buildDir = '../build'
+
+// Set the build directory for each subproject
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+
+// Ensure that the ':app' project is evaluated before the others
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+// Register a clean task to delete the build directory
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
