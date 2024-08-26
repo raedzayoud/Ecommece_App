@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -18,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
       textTheme: TextTheme(
         headlineLarge: TextStyle(fontWeight: FontWeight.w500, fontSize: 20,color: AppColor.black),
-        bodyLarge: TextStyle(height: 2, color: AppColor.grey)
+        headlineMedium: TextStyle(fontWeight: FontWeight.w500, fontSize: 25,color: AppColor.black),
+        bodyLarge: TextStyle(height: 2, color: AppColor.grey),
       )
       ),
       home: Onborading(),

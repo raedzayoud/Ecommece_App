@@ -6,6 +6,7 @@ class AppImageassets{
    static const String OnboradingImageTwo="$rootImages/onboardingtwo.PNG";
    static const String OnboradingImageThree="$rootImages/onboardingthree.PNG";
    static const String OnboradingImageFour="$rootImages/onboardingfour.PNG";
+   static const String logoauth="$rootImages/ecommerce.jpg";
 
 
 }
