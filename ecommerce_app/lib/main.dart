@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       )
       ),
       home: Onborading(),
-      routes: routes,
+      routes: routes, 
     );
   }
 }

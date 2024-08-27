@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/auth/forgetpassword_controller.dart';
 import 'package:ecommerce_app/controller/auth/login_controlller.dart';
+import 'package:ecommerce_app/controller/auth/resetpassword_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/view/widget/auth/curstomtextformauth.dart';
 import 'package:ecommerce_app/view/widget/auth/custombuttonauth.dart';
@@ -10,19 +11,20 @@ import 'package:ecommerce_app/view/widget/auth/logoauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Forgetpassword extends StatelessWidget {
-  const Forgetpassword({super.key});
+class Resetpassword extends StatelessWidget {
+  const Resetpassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ForgetpasswordControllerImp controlllerImp=Get.put(ForgetpasswordControllerImp());
+    ResetpasswordControllerImp controlllerImp =
+        Get.put(ResetpasswordControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColor.white,
         elevation: 0.0,
         title: Text(
-          "Forget Password",
+          "Reset Password",
           style: Theme.of(context)
               .textTheme
               .headlineLarge!
@@ -36,26 +38,32 @@ class Forgetpassword extends StatelessWidget {
           child: ListView(
             children: [
               Customtexttitleauth(
-                title: "Check Email",
+                title: "New Password",
               ),
               Customtextbodyauth(
-                body:
-                    "Create your account to start shopping the latest trends and enjoy exclusive deals",
+                body: "Please Enter a new Password",
               ),
               SizedBox(
                 height: 10,
               ),
               Curstomtextformauth(
-                hintText: "Enter Your Email",
-                iconData: Icons.email_outlined,
-                label: "Email",
-                mycontroller: controlllerImp.email,
+                hintText: "Enter Your Password",
+                iconData: Icons.lock_outline,
+                label: "Password",
+                mycontroller: controlllerImp.password,
               ),
-               Custombuttonauth(
-                content: "Check",
-                onPressed: () {},
+              Curstomtextformauth(
+                hintText: "Repeat Enter Your Password",
+                iconData: Icons.lock_outline,
+                label: "Password",
+                mycontroller: controlllerImp.repassword,
               ),
-              
+              Custombuttonauth(
+                content: "Save",
+                onPressed: () {
+                  controlllerImp.goToSuccessRestPassword();
+                },
+              ),
             ],
           )),
     );

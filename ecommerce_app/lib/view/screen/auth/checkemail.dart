@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controller/auth/checkemail_controller.dart';
 import 'package:ecommerce_app/controller/auth/forgetpassword_controller.dart';
 import 'package:ecommerce_app/controller/auth/login_controlller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
@@ -10,19 +11,19 @@ import 'package:ecommerce_app/view/widget/auth/logoauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Resetpassword extends StatelessWidget {
-  const Resetpassword({super.key});
+class Checkemail extends StatelessWidget {
+  const Checkemail({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ForgetpasswordControllerImp controlllerImp=Get.put(ForgetpasswordControllerImp());
+    CheckemailControllerImp controlllerImp=Get.put(CheckemailControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColor.white,
         elevation: 0.0,
         title: Text(
-          "Reset Password",
+        "Check Email",
           style: Theme.of(context)
               .textTheme
               .headlineLarge!
@@ -36,7 +37,7 @@ class Resetpassword extends StatelessWidget {
           child: ListView(
             children: [
               Customtexttitleauth(
-                title: "Check Email",
+                title: "Sucess sigun up",
               ),
               Customtextbodyauth(
                 body:
@@ -53,7 +54,9 @@ class Resetpassword extends StatelessWidget {
               ),
                Custombuttonauth(
                 content: "Check",
-                onPressed: () {},
+                onPressed: () {
+                  controlllerImp.goToSuccessSigun();
+                },
               ),
               
             ],

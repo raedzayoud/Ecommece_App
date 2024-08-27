@@ -27,8 +27,7 @@ class SignupControllerImp extends SignupController {
 
   @override
   Signup() {
-    // TODO: implement Signup
-    throw UnimplementedError();
+    Get.offNamed(AppRoutes.checkemail);
   }
 
   @override

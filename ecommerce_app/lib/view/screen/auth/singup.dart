@@ -77,7 +77,9 @@ class Singup extends StatelessWidget {
               SizedBox(height: 10,),
               Custombuttonauth(
                 content: "Sign Up",
-                onPressed: () {},
+                onPressed: () {
+                  controllerImp.Signup();
+                },
               ),
               SizedBox(
                 height: 13,
