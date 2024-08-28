@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/controller/auth/forgetpassword_controller.dart';
 import 'package:ecommerce_app/controller/auth/login_controlller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/function/validinput.dart';
 import 'package:ecommerce_app/view/widget/auth/curstomtextformauth.dart';
 import 'package:ecommerce_app/view/widget/auth/custombuttonauth.dart';
 import 'package:ecommerce_app/view/widget/auth/customtextbodyauth.dart';
@@ -33,32 +34,38 @@ class Forgetpassword extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 15),
           color: Colors.white,
           padding: EdgeInsets.all(20),
-          child: ListView(
-            children: [
-              Customtexttitleauth(
-                title: "Check Email",
-              ),
-              Customtextbodyauth(
-                body:
-                    "Create your account to start shopping the latest trends and enjoy exclusive deals",
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Curstomtextformauth(
-                hintText: "Enter Your Email",
-                iconData: Icons.email_outlined,
-                label: "Email",
-                mycontroller: controlllerImp.email,
-              ),
-               Custombuttonauth(
-                content: "Check",
-                onPressed: () {
-                  controlllerImp.goToCheckCode();
-                },
-              ),
-              
-            ],
+          child: Form(
+            key: controlllerImp.formState,
+            child: ListView(
+              children: [
+                Customtexttitleauth(
+                  title: "Check Email",
+                ),
+                Customtextbodyauth(
+                  body:
+                      "Create your account to start shopping the latest trends and enjoy exclusive deals",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Curstomtextformauth(
+                  hintText: "Enter Your Email",
+                  iconData: Icons.email_outlined,
+                  label: "Email",
+                  mycontroller: controlllerImp.email,
+                  validator: (val){
+                    return validinput(val!, 5 ,100, "email");
+                  },
+                ),
+                 Custombuttonauth(
+                  content: "Check",
+                  onPressed: () {
+                    controlllerImp.Checkemail();
+                  },
+                ),
+                
+              ],
+            ),
           )),
     );
   }

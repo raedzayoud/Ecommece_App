@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/controller/auth/login_controlller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/routes.dart';
+import 'package:ecommerce_app/core/function/alertexitapp.dart';
+import 'package:ecommerce_app/core/function/validinput.dart';
 import 'package:ecommerce_app/view/widget/auth/curstomtextformauth.dart';
 import 'package:ecommerce_app/view/widget/auth/custombuttonauth.dart';
 import 'package:ecommerce_app/view/widget/auth/customtextbodyauth.dart';
@@ -29,60 +31,73 @@ class Login extends StatelessWidget {
               .copyWith(color: AppColor.grey),
         ),
       ),
-      body: Container(
+      body: WillPopScope(
+        onWillPop:()=> alertExitApp(),
+        child: Container(
           margin: EdgeInsets.symmetric(horizontal: 15),
           color: Colors.white,
           padding: EdgeInsets.all(20),
-          child: ListView(
-            children: [
-              Logoauth(),
-              Customtexttitleauth(
-                title: "Welcome Back",
-              ),
-              Customtextbodyauth(
-                body:
-                    "Sign in with your email and password Or continue with your social media",
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Curstomtextformauth(
-                hintText: "Enter Your Email",
-                iconData: Icons.email_outlined,
-                label: "Email",
-                mycontroller: controlllerImp.email,
-              ),
-              Curstomtextformauth(
-                hintText: "Enter Your Password",
-                iconData: Icons.lock_outline,
-                label: "Password",
-                mycontroller: controlllerImp.password,
-              ),
-              InkWell(
-                onTap: (){
-                  controlllerImp.goToForgetPassword();
-                },
-                child: Text(
-                  "Forget Password ?",
-                  textAlign: TextAlign.end,
+          child: Form(
+            key: controlllerImp.formstate,
+            child: ListView(
+              children: [
+                Logoauth(),
+                Customtexttitleauth(
+                  title: "Welcome Back",
                 ),
-              ),
-              Custombuttonauth(
-                content: "Sign In",
-                onPressed: () {},
-              ),
-              SizedBox(
-                height: 13,
-              ),
-              Customtextsignup(
-                textone: "Don't have an account ? ",
-                textwo: "Sign up ",
-                onTap: (){
-                  controlllerImp.goToSignup();
-                },
-              ),
-            ],
-          )),
+                Customtextbodyauth(
+                  body:
+                      "Sign in with your email and password Or continue with your social media",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Curstomtextformauth(
+                  hintText: "Enter Your Email",
+                  iconData: Icons.email_outlined,
+                  label: "Email",
+                  mycontroller: controlllerImp.email,
+                  validator: (val){
+                    return validinput(val!, 5 ,100, "email");
+                  },
+                ),
+                Curstomtextformauth(
+                  hintText: "Enter Your Password",
+                  iconData: Icons.lock_outline,
+                  label: "Password",
+                  mycontroller: controlllerImp.password,
+                  validator: (val){
+                    return validinput(val!, 5 ,100, "password");
+                  },
+                ),
+                InkWell(
+                  onTap: (){
+                    controlllerImp.goToForgetPassword();
+                  },
+                  child: Text(
+                    "Forget Password ?",
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+                Custombuttonauth(
+                  content: "Sign In",
+                  onPressed: () {
+                    controlllerImp.Login();
+                  },
+                ),
+                SizedBox(
+                  height: 13,
+                ),
+                Customtextsignup(
+                  textone: "Don't have an account ? ",
+                  textwo: "Sign up ",
+                  onTap: (){
+                    controlllerImp.goToSignup();
+                  },
+                ),
+              ],
+            ),
+          ))),
     );
   }
 }

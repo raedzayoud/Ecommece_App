@@ -11,21 +11,24 @@ abstract class ResetpasswordController extends GetxController {
 class ResetpasswordControllerImp extends ResetpasswordController {
   late TextEditingController password;
   late TextEditingController repassword;
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
   @override
   resetPassword() {
-    // TODO: implement checkCode
-    throw UnimplementedError();
+    if (formState.currentState!.validate()) {
+      goToSuccessRestPassword();
+    } else {}
   }
 
   @override
   goToSuccessRestPassword() {
-    
+    Get.offNamed(AppRoutes.successresetpassword);
   }
+
   @override
   void onInit() {
     // TODO: implement onInit
-    password=TextEditingController();
-    repassword=TextEditingController();
+    password = TextEditingController();
+    repassword = TextEditingController();
     super.onInit();
   }
 }

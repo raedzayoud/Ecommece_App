@@ -1,6 +1,7 @@
-import 'package:ecommerce_app/controller/auth/checkemail_controller.dart';
 import 'package:ecommerce_app/controller/auth/forgetpassword_controller.dart';
 import 'package:ecommerce_app/controller/auth/login_controlller.dart';
+import 'package:ecommerce_app/controller/auth/verifycode_controller.dart';
+import 'package:ecommerce_app/controller/auth/verifycodesignup_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/view/widget/auth/curstomtextformauth.dart';
 import 'package:ecommerce_app/view/widget/auth/custombuttonauth.dart';
@@ -9,21 +10,23 @@ import 'package:ecommerce_app/view/widget/auth/customtextsignup.dart';
 import 'package:ecommerce_app/view/widget/auth/customtexttitleauth.dart';
 import 'package:ecommerce_app/view/widget/auth/logoauth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
-class Checkemail extends StatelessWidget {
-  const Checkemail({super.key});
+class Verifycodesignup extends StatelessWidget {
+  const Verifycodesignup({super.key});
 
   @override
   Widget build(BuildContext context) {
-    CheckemailControllerImp controlllerImp=Get.put(CheckemailControllerImp());
+    VerifycodesignupControllerImp controlllerImp =
+        Get.put(VerifycodesignupControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColor.white,
         elevation: 0.0,
         title: Text(
-        "Check Email",
+          "Verify Code",
           style: Theme.of(context)
               .textTheme
               .headlineLarge!
@@ -37,28 +40,30 @@ class Checkemail extends StatelessWidget {
           child: ListView(
             children: [
               Customtexttitleauth(
-                title: "Sucess sigun up",
+                title: "Check Code",
               ),
               Customtextbodyauth(
-                body:
-                    "Create your account to start shopping the latest trends and enjoy exclusive deals",
+                body: "Please Enter the Digit Code Sent To raedzayoud@isimg.tn",
               ),
               SizedBox(
                 height: 10,
               ),
-              Curstomtextformauth(
-                hintText: "Enter Your Email",
-                iconData: Icons.email_outlined,
-                label: "Email",
-                mycontroller: controlllerImp.email,
-              ),
-               Custombuttonauth(
-                content: "Check",
-                onPressed: () {
-                  controlllerImp.goToSuccessSigun();
+              OtpTextField(
+                numberOfFields: 5,
+                fieldWidth: 50,
+                borderRadius: BorderRadius.circular(30),
+                borderColor: Color(0xFF512DA8),
+                //set to true to show as box or false to show as dash
+                showFieldAsBox: true,
+                //runs when a code is typed in
+                onCodeChanged: (String code) {
+                  //handle validation or checks here
                 },
+                //runs when every textfield is filled
+                onSubmit: (String verificationCode) {
+                  controlllerImp.goToSuccessSigun();
+                }, // end onSubmit
               ),
-              
             ],
           )),
     );

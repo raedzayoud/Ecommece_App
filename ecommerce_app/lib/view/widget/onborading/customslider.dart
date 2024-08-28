@@ -22,8 +22,8 @@ class CustomsliderOnborading extends GetView<OnboradingcontrollerImp> {
                 ),
                 Image.asset(
                   onboradingList[i].image!,
-                  width: 200,
-                  height: 250,
+               
+                  height: Get.width/1.6,
                   fit: BoxFit.fill,
                 ),
                 SizedBox(

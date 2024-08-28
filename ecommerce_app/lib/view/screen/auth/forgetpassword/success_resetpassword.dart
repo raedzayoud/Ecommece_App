@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/auth/forgetpassword_controller.dart';
 import 'package:ecommerce_app/controller/auth/login_controlller.dart';
+import 'package:ecommerce_app/controller/auth/successresetpassword_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/view/widget/auth/curstomtextformauth.dart';
 import 'package:ecommerce_app/view/widget/auth/custombuttonauth.dart';
@@ -15,14 +16,14 @@ class SuccessResetpassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ForgetpasswordControllerImp controlllerImp=Get.put(ForgetpasswordControllerImp());
+    SuccessresetpasswordControllerImp controllerImp=Get.put(SuccessresetpasswordControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColor.white,
         elevation: 0.0,
         title: Text(
-          "Forget Password",
+          "Success",
           style: Theme.of(context)
               .textTheme
               .headlineLarge!
@@ -30,36 +31,38 @@ class SuccessResetpassword extends StatelessWidget {
         ),
       ),
       body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 15),
-          color: Colors.white,
-          padding: EdgeInsets.all(20),
-          child: ListView(
-            children: [
-              Customtexttitleauth(
-                title: "Check Email",
-              ),
-              Customtextbodyauth(
-                body:
-                    "Create your account to start shopping the latest trends and enjoy exclusive deals",
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Curstomtextformauth(
-                hintText: "Enter Your Email",
-                iconData: Icons.email_outlined,
-                label: "Email",
-                mycontroller: controlllerImp.email,
-              ),
-               Custombuttonauth(
-                content: "Check",
+        child: Column(
+          children: [
+            Center(
+                child: Icon(
+              Icons.check_circle_outline,
+              color: AppColor.primaycolor,
+              size: 200,
+            )),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Your account has been successfully created!",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            Spacer(),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              width: double.infinity,
+              child: Custombuttonauth(
+                content: "Go To Login",
                 onPressed: () {
-                  controlllerImp.goToCheckCode();
+                 controllerImp.goToLogin();
                 },
               ),
-              
-            ],
-          )),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
