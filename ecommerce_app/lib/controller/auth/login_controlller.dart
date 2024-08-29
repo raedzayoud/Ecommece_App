@@ -14,6 +14,11 @@ class LoginControlllerImp extends LoginControlller {
   GlobalKey<FormState>formstate=GlobalKey<FormState>();
   late TextEditingController email;
   late TextEditingController password;
+  bool isshowpassword=true;
+  showpassword(){
+    isshowpassword=isshowpassword==true?false:true;
+    update();
+  }
   @override
   Login() {
     if(formstate.currentState!.validate()){

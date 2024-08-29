@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constant/routes.dart';
+import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/data/datasource/static/static.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,11 +12,12 @@ abstract class Onboradingcontroller extends GetxController {
 class OnboradingcontrollerImp extends Onboradingcontroller {
   int currentPage = 0;
   late PageController controller;
-
+  MyServices services=Get.find();
   @override
   next() {
     currentPage++;
     if (currentPage > onboradingList.length-1) {
+      services.sharedPreferences.setBool("onborading", true);
       Get.offAllNamed(AppRoutes.login);
     } else {
       controller.animateToPage(currentPage,

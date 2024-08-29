@@ -1,11 +1,14 @@
 import 'package:ecommerce_app/binding.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/routes.dart';
 import 'package:ecommerce_app/view/screen/onborading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initialServices();
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -22,9 +25,9 @@ class MyApp extends StatelessWidget {
         bodyLarge: TextStyle(height: 2, color: AppColor.grey),
       )
       ),
-      home: Onborading(),
       initialBinding: MyBinding(),
-      routes: routes, 
+      //routes: routes,
+      getPages: getPages, 
     );
   }
 }
