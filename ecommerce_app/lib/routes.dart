@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/core/middleware/mymiddleware.dart';
+import 'package:ecommerce_app/test.dart';
 import 'package:ecommerce_app/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:ecommerce_app/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:ecommerce_app/view/screen/auth/forgetpassword/success_resetpassword.dart';
@@ -13,7 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? getPages = [
-  GetPage(name: "/", page: () => Onborading(), middlewares: [Mymiddleware()]),
+ // GetPage(name: "/", page: () => Onborading(), middlewares: [Mymiddleware()]),
+  GetPage(name: "/", page: () => Test()),
   GetPage(name: AppRoutes.login, page: () => Login()),
   GetPage(name: AppRoutes.singup, page: () => Singup()),
   GetPage(name: AppRoutes.forgetpassword, page: () => Forgetpassword()),

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/function/checkinternet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
@@ -9,6 +10,18 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
+  var res;
+  initial() async {
+    res = await checkInternet();
+    print(res);
+  }
+
+  @override
+  void initState() {
+    initial();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +42,7 @@ class _TestState extends State<Test> {
               //handle validation or checks here
             },
             //runs when every textfield is filled
-            onSubmit: (String verificationCode) {
-             
-            }, // end onSubmit
+            onSubmit: (String verificationCode) {}, // end onSubmit
           ),
         ],
       ),
