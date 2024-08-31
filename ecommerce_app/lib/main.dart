@@ -2,7 +2,6 @@ import 'package:ecommerce_app/binding.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/routes.dart';
-import 'package:ecommerce_app/view/screen/onborading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

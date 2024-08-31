@@ -15,11 +15,11 @@ List<Onboradingmodel> onboradingList = [
   Onboradingmodel(
       title: "Track Your Order",
       body:
-          "We have a 100k Product , Choose \n Your product from our \n E-commerce Shop",
+          "Track Your Order: Enter your order number to get real-time updates on your package's status and delivery time",
       image: AppImageassets.OnboradingImageThree),
   Onboradingmodel(
       title: "Fast Delivery",
       body:
-          "We have a 100k Product , Choose \n Your product from our \n E-commerce Shop",
+          "Fast Delivery: Enjoy quick and reliable shipping, ensuring your order reaches you in no time",
       image: AppImageassets.OnboradingImageFour),
 ];

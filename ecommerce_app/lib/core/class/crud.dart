@@ -13,6 +13,7 @@ class Crud {
         var reponse = await http.post(Uri.parse(linkapi), body: data);
         if (reponse.statusCode == 200 || reponse.statusCode == 201) {
           Map reponsebody = jsonDecode(reponse.body);
+          print(reponsebody);
           return Right(reponsebody);
         } else {
           return const Left(StatusRequest.serverfailure);
