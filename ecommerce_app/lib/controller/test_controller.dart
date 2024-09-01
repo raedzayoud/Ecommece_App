@@ -4,6 +4,8 @@ import 'package:ecommerce_app/data/datasource/remote/test_data.dart';
 import 'package:get/get.dart';
 
 class TestController extends GetxController {
+  //Crud crud=Crud();
+  //replace it with Get.find();
   TestData testData = TestData(Get.find());
 
   List data = [];

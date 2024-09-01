@@ -12,10 +12,10 @@ class Handlingdataview extends StatelessWidget {
   Widget build(BuildContext context) {
     return statusRequest==StatusRequest.loading?Center(
               child: Lottie.asset(AppImageassets.loading,width: 250,height: 250),
-            ):statusRequest==StatusRequest.failed?Center(child: Text("No data")):statusRequest==StatusRequest.offlinefailure?Center(
-              child: Text("offlinefailure"),
+            ):statusRequest==StatusRequest.failed?Center(child: Lottie.asset(AppImageassets.nodata,width: 250,height: 250),):statusRequest==StatusRequest.offlinefailure?Center(
+             child: Lottie.asset(AppImageassets.nointernet,width: 250,height: 250),
             ):statusRequest==StatusRequest.serverfailure?Center(
-              child: Text("serverfailure"),
+              child: Lottie.asset(AppImageassets.serverfailed,width: 250,height: 250),
             ):widget;
     
   }

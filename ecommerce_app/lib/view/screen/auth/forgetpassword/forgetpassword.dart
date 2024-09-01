@@ -43,8 +43,7 @@ class Forgetpassword extends StatelessWidget {
                 ),
                 Customtextbodyauth(
                   body:
-                      "Create your account to start shopping the latest trends and enjoy exclusive deals",
-                ),
+                      "Please Enter Your Email Address To Recive A verification code",),
                 SizedBox(
                   height: 10,
                 ),

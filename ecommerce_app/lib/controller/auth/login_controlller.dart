@@ -1,4 +1,7 @@
+import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/routes.dart';
+import 'package:ecommerce_app/core/function/handlingdata.dart';
+import 'package:ecommerce_app/data/datasource/remote/auth/login_data.dart';
 import 'package:ecommerce_app/view/screen/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -15,13 +18,31 @@ class LoginControlllerImp extends LoginControlller {
   late TextEditingController email;
   late TextEditingController password;
   bool isshowpassword=true;
+  StatusRequest ? statusRequest;
+    LoginData loginData=LoginData(Get.find());
   showpassword(){
     isshowpassword=isshowpassword==true?false:true;
     update();
   }
   @override
-  Login() {
+  Login()async {
     if(formstate.currentState!.validate()){
+        statusRequest = StatusRequest.loading;
+      update();
+      var response = await loginData.postData(password.text, email.text);
+      if (response == null) {
+        statusRequest = StatusRequest.failed;
+      }
+      statusRequest = HandleData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == 'success') {
+          Get.offNamed(AppRoutes.home);
+        } else {
+          Get.defaultDialog(title: "Warning",middleText: "Email or Password is not correct ! ");
+          statusRequest = StatusRequest.failed;
+        }
+      }
+      update();
 
     }
     else{
