@@ -15,7 +15,7 @@ class VerifycodesignupControllerImp extends VerifycodesignupController {
 //  late String verifycode;
   String? email;
   Verifycodesignup verifycodesignup = Verifycodesignup(Get.find());
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest=StatusRequest.none;
 
   @override
   goToSuccessSigun(String verifycode) async {

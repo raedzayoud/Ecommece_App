@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/controller/auth/forgetpassword_controller.dart';
 import 'package:ecommerce_app/controller/auth/login_controlller.dart';
-import 'package:ecommerce_app/controller/auth/verifycode_controller.dart';
+import 'package:ecommerce_app/controller/forgetpassword/verifycode_controller.dart';
+import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/view/widget/auth/curstomtextformauth.dart';
 import 'package:ecommerce_app/view/widget/auth/custombuttonauth.dart';
@@ -17,7 +17,7 @@ class Verifycode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VerifycodeController controlllerImp =
+    
         Get.put(VerifycodeControllerImp());
     return Scaffold(
       appBar: AppBar(
@@ -32,7 +32,9 @@ class Verifycode extends StatelessWidget {
               .copyWith(color: AppColor.grey),
         ),
       ),
-      body: Container(
+      body: GetBuilder<VerifycodeControllerImp>(builder: (controller) =>
+      HandlingdataRequest(
+                    statusRequest: controller.statusRequest,widget: Container(
           margin: EdgeInsets.symmetric(horizontal: 15),
           color: Colors.white,
           padding: EdgeInsets.all(20),
@@ -42,7 +44,7 @@ class Verifycode extends StatelessWidget {
                 title: "Check Code",
               ),
               Customtextbodyauth(
-                body: "Please Enter the Digit Code Sent To raedzayoud@isimg.tn",
+                body: "Please Enter the Digit Code Sent To ${controller.email}",
               ),
               SizedBox(
                 height: 10,
@@ -60,11 +62,12 @@ class Verifycode extends StatelessWidget {
                 },
                 //runs when every textfield is filled
                 onSubmit: (String verificationCode) {
-                  controlllerImp.goToRestPassword();
+                  controller.checkCode(verificationCode);
                 }, // end onSubmit
               ),
             ],
-          )),
+          )),)
+       ),
     );
   }
 }

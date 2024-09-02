@@ -18,7 +18,7 @@ class LoginControlllerImp extends LoginControlller {
   late TextEditingController email;
   late TextEditingController password;
   bool isshowpassword=true;
-  StatusRequest ? statusRequest;
+  StatusRequest  statusRequest=StatusRequest.none;
     LoginData loginData=LoginData(Get.find());
   showpassword(){
     isshowpassword=isshowpassword==true?false:true;

@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/controller/auth/signup_controller.dart';
+import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
@@ -34,10 +35,9 @@ class Singup extends StatelessWidget {
       body: WillPopScope(
         onWillPop: () => alertExitApp(),
         child: GetBuilder<SignupControllerImp>(
-          builder: (controllerImp) =>
-              controllerImp.statusRequest == StatusRequest.loading
-                  ? Center(child: Lottie.asset(AppImageassets.loading,width: 250,height: 250))
-                  : Container(
+          builder: (controllerImp) =>HandlingdataRequest(
+                    statusRequest: controllerImp.statusRequest,widget:   
+                  Container(
                       margin: EdgeInsets.symmetric(horizontal: 15),
                       color: Colors.white,
                       padding: EdgeInsets.all(20),
@@ -124,8 +124,11 @@ class Singup extends StatelessWidget {
                           ],
                         ),
                       )),
+              
+              
         ),
       ),
+    )
     );
   }
 }

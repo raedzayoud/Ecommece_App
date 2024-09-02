@@ -17,7 +17,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? getPages = [
   GetPage(name: "/", page: () => Onborading(), middlewares: [Mymiddleware()]),
- // GetPage(name: "/", page: () => TestView()),
+  // GetPage(name: "/", page: () => TestView()),
   GetPage(name: AppRoutes.login, page: () => Login()),
   GetPage(name: AppRoutes.singup, page: () => Singup()),
   GetPage(name: AppRoutes.forgetpassword, page: () => Forgetpassword()),
@@ -27,4 +27,5 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AppRoutes.successsignup, page: () => SuccessSignup()),
   GetPage(name: AppRoutes.verifycodesignup, page: () => Verifycodesignup()),
   GetPage(name: AppRoutes.home, page: () => Home()),
+  GetPage(name: AppRoutes.verifycode, page: () => Verifycode()),
 ];

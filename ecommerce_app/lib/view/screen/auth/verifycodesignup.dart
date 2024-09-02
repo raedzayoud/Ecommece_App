@@ -1,7 +1,6 @@
-import 'package:ecommerce_app/controller/auth/forgetpassword_controller.dart';
 import 'package:ecommerce_app/controller/auth/login_controlller.dart';
-import 'package:ecommerce_app/controller/auth/verifycode_controller.dart';
 import 'package:ecommerce_app/controller/auth/verifycodesignup_controller.dart';
+import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
@@ -36,12 +35,8 @@ class Verifycodesignup extends StatelessWidget {
           ),
         ),
         body: GetBuilder<VerifycodesignupControllerImp>(
-          builder: (controlllerImp) =>
-              controlllerImp.statusRequest == StatusRequest.loading
-                  ? Center(
-                      child: Lottie.asset(AppImageassets.loading,
-                          width: 250, height: 250))
-                  : Container(
+          builder: (controlllerImp) =>HandlingdataRequest(
+            statusRequest: controlllerImp.statusRequest,widget: Container(
                       margin: EdgeInsets.symmetric(horizontal: 15),
                       color: Colors.white,
                       padding: EdgeInsets.all(20),
@@ -74,7 +69,8 @@ class Verifycodesignup extends StatelessWidget {
                             }, // end onSubmit
                           ),
                         ],
-                      )),
+                      )),  
+          ),
         ));
   }
 }

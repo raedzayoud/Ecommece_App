@@ -34,7 +34,7 @@ class SignupControllerImp extends SignupController {
 
   List data = [];
 
-  StatusRequest ? statusRequest;
+  StatusRequest  statusRequest=StatusRequest.none;
 
   @override
   Signup() async {
