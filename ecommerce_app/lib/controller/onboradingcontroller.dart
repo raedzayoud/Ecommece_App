@@ -17,7 +17,7 @@ class OnboradingcontrollerImp extends Onboradingcontroller {
   next() {
     currentPage++;
     if (currentPage > onboradingList.length-1) {
-      services.sharedPreferences.setBool("onborading", true);
+      services.sharedPreferences.setString("step", "1");
       Get.offAllNamed(AppRoutes.login);
     } else {
       controller.animateToPage(currentPage,
