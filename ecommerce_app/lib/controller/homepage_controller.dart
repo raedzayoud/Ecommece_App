@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 abstract class HomepageController extends GetxController {
   initialData();
   getData();
+  goToItems(List categories,int selectCat);
 }
 
 class HomepageControllerImp extends HomepageController {
@@ -48,5 +49,13 @@ class HomepageControllerImp extends HomepageController {
       }
     }
     update();
+  }
+  
+  @override
+  goToItems(List categories,int selectCat) {
+    Get.toNamed(AppRoutes.items,arguments: {
+      "categories":categories,
+      "selectCat":selectCat
+    });
   }
 }

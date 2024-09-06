@@ -43,6 +43,6 @@ class HomeScrrenControllerImp extends HomescrrenController {
   
   @override
   changeColor(int index, int current) {
-   return index==current?AppColor.primaycolor:Colors.black;
+   return index==current?AppColor.primaycolor:AppColor.black;
   }
 }

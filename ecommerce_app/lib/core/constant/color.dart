@@ -7,4 +7,6 @@ class AppColor {
   static const Color white = Colors.white;
   static const Color blue = Color.fromRGBO(72, 187, 202, 1);
   static const Color secondcolor = Color(0xff3498db);
+  static const Color grey2 = Color.fromARGB(255, 155, 155, 155);
+  static const Color red = Color.fromARGB(255, 211, 40, 40);
 }

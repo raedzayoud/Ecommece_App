@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/controller/homescrren_controller.dart';
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/view/widget/home/curstombuttomapparhome.dart';
 import 'package:ecommerce_app/view/widget/home/custombuttomappar.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class Homescreen extends StatelessWidget {
     return GetBuilder<HomeScrrenControllerImp>(
         builder: (controller) => Scaffold(
               floatingActionButton: FloatingActionButton(
-                backgroundColor: Colors.white,
+                backgroundColor: AppColor.white,
                 onPressed: () {},
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),

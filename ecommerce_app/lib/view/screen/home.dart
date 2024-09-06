@@ -4,7 +4,7 @@ import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/linkapi.dart';
-import 'package:ecommerce_app/view/widget/home/customappar.dart';
+import 'package:ecommerce_app/view/widget/customappar.dart';
 import 'package:ecommerce_app/view/widget/home/customcardhome.dart';
 import 'package:ecommerce_app/view/widget/home/customtexttitle.dart';
 import 'package:ecommerce_app/view/widget/home/listcategories.dart';
