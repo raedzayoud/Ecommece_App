@@ -11,10 +11,12 @@ import 'package:ecommerce_app/view/screen/auth/verifycodesignup.dart';
 import 'package:ecommerce_app/view/screen/homescreen.dart';
 import 'package:ecommerce_app/view/screen/itemscategories.dart';
 import 'package:ecommerce_app/view/screen/onborading.dart';
+import 'package:ecommerce_app/view/screen/productdetails.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? getPages = [
   GetPage(name: "/", page: () => Onborading(), middlewares: [Mymiddleware()]),
+  GetPage(name:AppRoutes.productdetails, page: () => Productdetails()),
   // GetPage(name: "/", page: () => TestView()),
   GetPage(name: AppRoutes.login, page: () => Login()),
   GetPage(name: AppRoutes.singup, page: () => Singup()),

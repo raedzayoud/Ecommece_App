@@ -44,7 +44,7 @@ class Items extends GetView<ItemsControllerImp> {
     return GetBuilder<ItemsControllerImp>(builder: (controller)=>InkWell(
       onTap: () {
         // controller.goToItems(controller.categories, i);
-        controller.changeitem(i);
+        controller.changeitem(i,itemsModel.categoriesId!);
       },
       child: Column(
         children: [
