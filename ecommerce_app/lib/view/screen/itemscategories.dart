@@ -43,9 +43,9 @@ class Itemscategories extends StatelessWidget {
                         childAspectRatio: 0.55,
                       ),
                       itemBuilder: (BuildContext context, int index) {
-                        return Customlistitemsgrid(
+                        return Customlistitemsgrid(istakeit: false,
                           itemsModel:
-                              ItemsModel.fromJson(controller.data[index]),
+                              ItemsModel.fromJson(controller.data[index])
                         );
                       },
                     ),
