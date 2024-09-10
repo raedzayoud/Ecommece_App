@@ -1,5 +1,5 @@
 class AppLinkApi {
-  static String linkServeurName = "http://192.168.97.96/ecommerce";
+  static String linkServeurName = "http://192.168.167.48/ecommerce";
   //
 
   //===================================Image===================================//
@@ -29,4 +29,9 @@ class AppLinkApi {
   //===================================DataItems===================================//
 
   static String items = "$linkServeurName/items/view.php";
+
+  //===================================Favourite===================================//
+
+  static String addFavourite = "$linkServeurName/favourite/add.php";
+  static String removeFavourite = "$linkServeurName/favourite/remove.php";
 }

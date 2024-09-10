@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/core/function/handlingdata.dart';
+import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/items_data.dart';
 import 'package:ecommerce_app/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ class ItemsControllerImp extends ItemsController {
   int? catid;
   StatusRequest statusRequest = StatusRequest.none;
   ItemsData itemsData = ItemsData(Get.find());
+  MyServices myServices=Get.find();
 
   @override
   void onInit() {
@@ -47,7 +49,7 @@ class ItemsControllerImp extends ItemsController {
     }
     statusRequest = StatusRequest.loading;
     update();
-    var response = await itemsData.getData(catid);
+    var response = await itemsData.getData(myServices.sharedPreferences.getString("id")!,catid);
     if (response == null) {
       statusRequest = StatusRequest.failed;
     }

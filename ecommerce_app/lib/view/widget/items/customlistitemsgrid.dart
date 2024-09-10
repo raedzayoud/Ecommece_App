@@ -1,19 +1,18 @@
+import 'package:ecommerce_app/controller/favourite_controller.dart';
 import 'package:ecommerce_app/controller/items_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/data/model/itemsmodel.dart';
 import 'package:ecommerce_app/linkapi.dart';
-import 'package:ecommerce_app/view/screen/productdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hash_cached_image/hash_cached_image.dart';
 
 class Customlistitemsgrid extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
-  final bool istakeit;
+  //final bool istakeit;
   const Customlistitemsgrid({
     super.key,
     required this.itemsModel,
-    required this.istakeit,
   });
 
   @override
@@ -84,14 +83,29 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
                           color: AppColor.secondcolor,
                           fontWeight: FontWeight.bold),
                     ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          istakeit == true
-                              ? Icons.favorite
-                              : Icons.favorite_outline,
-                          color: AppColor.secondcolor,
-                        ))
+                    GetBuilder<FavouriteControllerImp>(
+                        builder: (controller) => IconButton(
+                            onPressed: () {
+                              if (controller.isfavorite[itemsModel.itemsId] ==
+                                  "1") {
+                                controller.setFavoutite(
+                                    itemsModel.itemsId, "0");
+                                controller.removeFavourite(
+                                    itemsModel.itemsId.toString());
+                              } else {
+                                controller.setFavoutite(
+                                    itemsModel.itemsId, "1");
+
+                                controller.addFavourite(
+                                    itemsModel.itemsId.toString());
+                              }
+                            },
+                            icon: Icon(
+                              controller.isfavorite[itemsModel.itemsId] == "1"
+                                  ? Icons.favorite
+                                  : Icons.favorite_outline,
+                              color: AppColor.secondcolor,
+                            ))),
                   ],
                 ),
               ],
