@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomepageControllerImp());
+   HomepageControllerImp controllerImp= Get.put(HomepageControllerImp());
     return GetBuilder<HomeScrrenControllerImp>(builder: (controller)=>SafeArea(
         child: GetBuilder<HomepageControllerImp>(
       builder: (controllerImp) => Handlingdataview(
@@ -31,9 +31,12 @@ class Home extends StatelessWidget {
             children: [
               //appar
               Customappar(
-                titleappar: "Find Your Product ",
+                titleappar: "Find Product ",
                 onPressedIcon: () {},
                 onPressedSearch: () {},
+                onPressedFavourite: (){
+                  controllerImp.goToFavourite();
+                },
               ),
               Customcardhome(
                 body: "CashBack 20 %",

@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 abstract class FavouriteController extends GetxController {
   setFavoutite(id, val);
+  
 }
 
 class FavouriteControllerImp extends FavouriteController {

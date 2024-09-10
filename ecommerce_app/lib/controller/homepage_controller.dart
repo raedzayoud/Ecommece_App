@@ -9,6 +9,7 @@ abstract class HomepageController extends GetxController {
   initialData();
   getData();
   goToItems(List categories,int selectCat,int categorieid);
+  goToFavourite();
 }
 
 class HomepageControllerImp extends HomepageController {
@@ -58,5 +59,10 @@ class HomepageControllerImp extends HomepageController {
       "selectCat":selectCat,
       "idcat":categorieid
     });
+  }
+  
+  @override
+  goToFavourite() {
+    Get.toNamed(AppRoutes.Myfavourite);
   }
 }
