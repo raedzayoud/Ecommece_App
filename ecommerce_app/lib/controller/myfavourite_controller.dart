@@ -17,7 +17,7 @@ abstract class MyfavouriteController extends GetxController {
 class MyfavouriteControllerImp extends MyfavouriteController {
   Map isfavorite = {};
   StatusRequest statusRequest = StatusRequest.none;
-  MyfavouriteData itemsData = MyfavouriteData(Get.find());
+  MyfavouriteData myfavouriteData = MyfavouriteData(Get.find());
   MyServices myServices = Get.find();
   List<Myfavourite> allData = [];
 
@@ -30,7 +30,7 @@ class MyfavouriteControllerImp extends MyfavouriteController {
   getData() async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await itemsData
+    var response = await myfavouriteData
         .getMyFavourite(myServices.sharedPreferences.getString("id")!);
     if (response == null) {
       statusRequest = StatusRequest.failed;
@@ -44,6 +44,14 @@ class MyfavouriteControllerImp extends MyfavouriteController {
         statusRequest = StatusRequest.failed;
       }
     }
+    update();
+  }
+
+  deletefavourite(String favouriteid) {
+    var response = myfavouriteData.deleteFavourite(favouriteid);
+
+    allData.removeWhere((element) => element.favouriteId == favouriteid);
+
     update();
   }
 

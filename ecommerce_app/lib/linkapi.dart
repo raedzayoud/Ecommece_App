@@ -35,4 +35,5 @@ class AppLinkApi {
   static String addFavourite = "$linkServeurName/favourite/add.php";
   static String removeFavourite = "$linkServeurName/favourite/remove.php";
   static String myfavourite = "$linkServeurName/favourite/view.php";
+  static String deletefavourite = "$linkServeurName/favourite/deletefavourite.php";
 }

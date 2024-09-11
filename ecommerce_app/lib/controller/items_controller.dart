@@ -64,6 +64,8 @@ class ItemsControllerImp extends ItemsController {
     }
     update();
   }
+
+  
   
   @override
   getToProductDetails(ItemsModel itemsModel) {
