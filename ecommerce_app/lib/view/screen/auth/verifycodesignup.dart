@@ -4,6 +4,7 @@ import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
+import 'package:ecommerce_app/core/function/alertexitapp.dart';
 import 'package:ecommerce_app/view/widget/auth/curstomtextformauth.dart';
 import 'package:ecommerce_app/view/widget/auth/custombuttonauth.dart';
 import 'package:ecommerce_app/view/widget/auth/customtextbodyauth.dart';
@@ -35,41 +36,52 @@ class Verifycodesignup extends StatelessWidget {
           ),
         ),
         body: GetBuilder<VerifycodesignupControllerImp>(
-          builder: (controlllerImp) =>HandlingdataRequest(
-            statusRequest: controlllerImp.statusRequest,widget: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 15),
-                      color: Colors.white,
-                      padding: EdgeInsets.all(20),
-                      child: ListView(
-                        children: [
-                          Customtexttitleauth(
-                            title: "Check Code",
-                          ),
-                          Customtextbodyauth(
-                            body:
-                                "Please Enter the Digit Code Sent To ${controlllerImp.email}",
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          OtpTextField(
-                            numberOfFields: 5,
-                            fieldWidth: 50,
-                            borderRadius: BorderRadius.circular(30),
-                            borderColor: Color(0xFF512DA8),
-                            //set to true to show as box or false to show as dash
-                            showFieldAsBox: true,
-                            //runs when a code is typed in
-                            onCodeChanged: (String code) {
-                              //handle validation or checks here
-                            },
-                            //runs when every textfield is filled
-                            onSubmit: (String verificationCode) {
-                              controlllerImp.goToSuccessSigun(verificationCode);
-                            }, // end onSubmit
-                          ),
-                        ],
-                      )),  
+          builder: (controlllerImp) => HandlingdataRequest(
+            statusRequest: controlllerImp.statusRequest,
+            widget: WillPopScope(
+              onWillPop: () => alertExitApp(),
+              child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  color: Colors.white,
+                  padding: EdgeInsets.all(20),
+                  child: ListView(
+                    children: [
+                      Customtexttitleauth(
+                        title: "Check Code",
+                      ),
+                      Customtextbodyauth(
+                        body:
+                            "Please Enter the Digit Code Sent To ${controlllerImp.email}",
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      OtpTextField(
+                        numberOfFields: 5,
+                        fieldWidth: 50,
+                        borderRadius: BorderRadius.circular(30),
+                        borderColor: Color(0xFF512DA8),
+                        //set to true to show as box or false to show as dash
+                        showFieldAsBox: true,
+                        //runs when a code is typed in
+                        onCodeChanged: (String code) {
+                          //handle validation or checks here
+                        },
+                        //runs when every textfield is filled
+                        onSubmit: (String verificationCode) {
+                          controlllerImp.goToSuccessSigun(verificationCode);
+                        }, // end onSubmit
+                      ),
+                       SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                      child: MaterialButton(onPressed: (){
+                        controlllerImp.resend();
+                      },child: Text("Reset Verify Code",style: TextStyle(fontSize: 18,color: AppColor.primaycolor),),)),
+                    ],
+                  )),
+            ),
           ),
         ));
   }

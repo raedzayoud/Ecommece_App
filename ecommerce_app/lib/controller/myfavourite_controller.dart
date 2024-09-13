@@ -47,12 +47,21 @@ class MyfavouriteControllerImp extends MyfavouriteController {
     update();
   }
 
-  deletefavourite(String favouriteid) {
-    var response = myfavouriteData.deleteFavourite(favouriteid);
+  deletefavourite(String favouriteid) async {
+    statusRequest = StatusRequest.loading; // Show loading state
+    update(); // Update UI to show loading
 
-    allData.removeWhere((element) => element.favouriteId == favouriteid);
+    var response = await myfavouriteData
+        .deleteFavourite(favouriteid); // Wait for the delete response
 
-    update();
+    if (response['status'] == 'success') {
+      allData.removeWhere((element) =>
+          element.favouriteId == favouriteid); // Remove from list if successful
+    //  update(['favouriteList']);
+    }
+
+    statusRequest = StatusRequest.success; // Reset status
+    update(); // Refresh UI
   }
 
   @override

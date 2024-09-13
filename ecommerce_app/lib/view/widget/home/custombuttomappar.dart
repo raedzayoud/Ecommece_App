@@ -23,10 +23,10 @@ class Custombuttomappar extends StatelessWidget {
             iconData,
             color: color,
           ),
-          Text(
-            textappar,
-            style: TextStyle(color: color),
-          ),
+          // Text(
+          //   textappar,
+          //   style: TextStyle(color: color),
+          // ),
         ],
       ),
     );

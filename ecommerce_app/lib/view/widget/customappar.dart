@@ -34,24 +34,22 @@ class Customappar extends StatelessWidget {
                 filled: true,
                 fillColor: Colors.grey[200]),
           )),
-          SizedBox(
-            width: 10,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            width: 60,
-            padding: EdgeInsets.symmetric(vertical: 7),
-            child: IconButton(
-                onPressed: onPressedIcon,
-                icon: Icon(
-                  Icons.notifications_active_outlined,
-                  size: 28,
-                  color: Colors.grey[600],
-                )),
-          ),
+          
+          // Container(
+          //   decoration: BoxDecoration(
+          //     color: Colors.grey[200],
+          //     borderRadius: BorderRadius.circular(10),
+          //   ),
+          //   width: 60,
+          //   padding: EdgeInsets.symmetric(vertical: 7),
+          //   child: IconButton(
+          //       onPressed: onPressedIcon,
+          //       icon: Icon(
+          //         Icons.notifications_active_outlined,
+          //         size: 28,
+          //         color: Colors.grey[600],
+          //       )),
+          // ),
           SizedBox(
             width: 10,
           ),

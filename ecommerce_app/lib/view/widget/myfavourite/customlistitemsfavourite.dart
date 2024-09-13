@@ -78,6 +78,7 @@ class Customlistitemsfavourite extends GetView<MyfavouriteControllerImp> {
                     ),
                     IconButton(onPressed: (){
                       controller.deletefavourite(itemsModel.favouriteId.toString());
+                       controller.update();
                     }, icon: Icon(Icons.delete))
                   ],
                 ),

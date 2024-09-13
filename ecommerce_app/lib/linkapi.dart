@@ -1,5 +1,5 @@
 class AppLinkApi {
-  static String linkServeurName = "http://192.168.167.48/ecommerce";
+  static String linkServeurName = "http://192.168.10.173/ecommerce";
   //
 
   //===================================Image===================================//
@@ -14,6 +14,7 @@ class AppLinkApi {
   static String signup = "$linkServeurName/auth/signup.php";
   static String login = "$linkServeurName/auth/login.php";
   static String verifycodesignup = "$linkServeurName/auth/verifycode.php";
+  static String resend = "$linkServeurName/auth/resetverifycode.php";
 
   //===================================Forgetpassword===================================//
 

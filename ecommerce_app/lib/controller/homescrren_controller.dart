@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/view/screen/home.dart';
+import 'package:ecommerce_app/view/screen/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,9 +14,9 @@ class HomeScrrenControllerImp extends HomescrrenController {
   Color color = Colors.black;
   Map<String,IconData>mp={
     "home":Icons.home,
+    "notification":Icons.notifications_active_outlined,
+    "Profile":Icons.person_pin_sharp,
     "Settings":Icons.settings,
-    "Profile":Icons.man,
-    "Favourite":Icons.favorite_outline,
   };
   List<Widget> list = [
     Home(),
@@ -29,11 +30,8 @@ class HomeScrrenControllerImp extends HomescrrenController {
         Text("Profile"),
       ],
     ),
-    Column(
-      children: [
-        Text("Favourite"),
-      ],
-    ),
+    Settings(),
+    
   ];
   @override
   changePage(int index) {

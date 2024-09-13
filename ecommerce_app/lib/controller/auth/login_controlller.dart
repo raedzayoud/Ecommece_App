@@ -21,7 +21,7 @@ class LoginControlllerImp extends LoginControlller {
   late TextEditingController password;
   bool isshowpassword = true;
   StatusRequest statusRequest = StatusRequest.none;
-  MyServices services=Get.find();
+  MyServices services = Get.find();
   LoginData loginData = LoginData(Get.find());
   showpassword() {
     isshowpassword = isshowpassword == true ? false : true;
@@ -40,13 +40,35 @@ class LoginControlllerImp extends LoginControlller {
       statusRequest = HandleData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == 'success') {
-          services.sharedPreferences.setString("id", response['data']['user_id'].toString());
-          services.sharedPreferences.setString("username", response['data']['user_name']);
-          services.sharedPreferences.setString("email", response['data']['user_email']);
-          services.sharedPreferences.setString("phone", response['data']['user_phone'].toString());
-          services.sharedPreferences.setString("age", response['data']['user_age'].toString());
-          services.sharedPreferences.setString("step","2");
-          Get.offNamed(AppRoutes.home);
+          if (response['data']['user_appreove'].toString() == "1") {
+            services.sharedPreferences
+                .setString("id", response['data']['user_id'].toString());
+            services.sharedPreferences
+                .setString("username", response['data']['user_name']);
+            services.sharedPreferences
+                .setString("email", response['data']['user_email']);
+            services.sharedPreferences
+                .setString("phone", response['data']['user_phone'].toString());
+            services.sharedPreferences
+                .setString("age", response['data']['user_age'].toString());
+            services.sharedPreferences.setString("step", "2");
+            Get.offNamed(AppRoutes.home);
+          } else {
+            Get.snackbar(
+              "Email Verification Required",
+              "Please verify your email before proceeding. You will be redirected to the verification code check.",
+              snackPosition:
+                  SnackPosition.BOTTOM, // Optional: Adjust the position
+              backgroundColor:
+                  Colors.black, // Optional: Customize the background color
+              colorText: Colors.white, // Optional: Customize the text color
+              duration: Duration(seconds: 7), // Add duration for the Snackbar
+               margin: EdgeInsets.all(10), 
+            );
+
+            Get.offAllNamed(AppRoutes.verifycodesignup,
+                arguments: {"email": email.text});
+          }
         } else {
           Get.defaultDialog(
               title: "Warning",
