@@ -1,5 +1,10 @@
 import 'package:ecommerce_app/core/constant/color.dart';
-import 'package:ecommerce_app/core/constant/imageassets.dart';
+import 'package:ecommerce_app/view/widget/cart/curstomtopappar.dart';
+import 'package:ecommerce_app/view/widget/cart/custombuttomcart.dart';
+import 'package:ecommerce_app/view/widget/cart/custombuttomnavigatorcart.dart';
+import 'package:ecommerce_app/view/widget/cart/customorder.dart';
+import 'package:ecommerce_app/view/widget/cart/custompriceshipping.dart';
+import 'package:ecommerce_app/view/widget/cart/topcardcart.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatelessWidget {
@@ -8,38 +13,30 @@ class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Center(
-            child: Text(
-              "Cart ",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      bottomNavigationBar: Custombuttomnavigatorcart(),
+      body: Container(
+        color: AppColor.white,
+        child: ListView(
+          children: [
+            Curstomtopappar(
+              title: "My Cart",
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-            child: Card(
-              child: Row(
-                children: [
-                  Expanded(
-                  flex: 2,
-                  child: Image.asset(AppImageassets.logoauth)),
-                  Expanded(
-                  flex: 3,  
-                  child:ListTile(title:  Text("MacBook M2"),subtitle: Text("300.000 \$",style: TextStyle(color: AppColor.primaycolor),),)),
-                  Expanded(
-                      child: Column(
-                    children: [
-                      IconButton(onPressed: (){}, icon: Icon(Icons.add)),
-                     Text("20"),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.remove)),
-                    ],
-                  )),
-                ],
-              ),
+            SizedBox(
+              height: 5,
             ),
-          )
-        ],
+            Topcardcart(title: "You have 2 items in Your List "),
+            Customorder(
+              count: "2",
+              price: "200",
+              title: "MackBook 2",
+            ),
+            Customorder(
+              count: "2",
+              price: "200",
+              title: "MackBook 2",
+            ),
+          ],
+        ),
       ),
     );
   }
