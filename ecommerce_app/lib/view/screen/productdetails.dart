@@ -60,12 +60,16 @@ class Productdetails extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                 
-                  Bodytext(body: "${controllerImp.itemsModel.itemsDesc}${controllerImp.itemsModel.itemsDesc}${controllerImp.itemsModel.itemsDesc}", color: AppColor.black,size: 15.5,),
+                  Bodytext(
+                    body:
+                        "${controllerImp.itemsModel.itemsDesc}${controllerImp.itemsModel.itemsDesc}${controllerImp.itemsModel.itemsDesc}",
+                    color: AppColor.black,
+                    size: 15.5,
+                  ),
                   SizedBox(
                     height: 10,
                   ),
-                    Bodytext(
+                  Bodytext(
                     body: "Color",
                     color: AppColor.primaycolor,
                   ),
@@ -79,8 +83,14 @@ class Productdetails extends StatelessWidget {
                   Quantityandprice(
                     price: "${controllerImp.itemsModel.itemsPrice}",
                     quantity: "${controllerImp.itemsModel.itemsCount}",
-                    onAdd: () {},
-                    onRemove: () {},
+                    onAdd: () {
+                      controllerImp.cartControllerImp
+                          .addCart("${controllerImp.itemsModel.itemsId}");
+                    },
+                    onRemove: () {
+                      controllerImp.cartControllerImp
+                          .removeCart("${controllerImp.itemsModel.itemsId}");
+                    },
                   ),
                 ],
               ),

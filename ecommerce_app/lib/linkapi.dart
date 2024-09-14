@@ -36,5 +36,12 @@ class AppLinkApi {
   static String addFavourite = "$linkServeurName/favourite/add.php";
   static String removeFavourite = "$linkServeurName/favourite/remove.php";
   static String myfavourite = "$linkServeurName/favourite/view.php";
-  static String deletefavourite = "$linkServeurName/favourite/deletefavourite.php";
+  static String deletefavourite =
+      "$linkServeurName/favourite/deletefavourite.php";
+
+  //===================================Cart===================================//
+  static String addCart = "$linkServeurName/Cart/add.php";
+  static String removeCart = "$linkServeurName/Cart/delete.php";
+  static String viewCart= "$linkServeurName/Cart/view.php";
+  
 }
