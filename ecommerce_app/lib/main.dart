@@ -4,7 +4,6 @@ import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialServices();

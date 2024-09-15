@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Curstomtopappar extends StatelessWidget {
   final String title;
@@ -13,7 +14,9 @@ class Curstomtopappar extends StatelessWidget {
               child: Container(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: Icon(Icons.arrow_back),
             ),
           )),

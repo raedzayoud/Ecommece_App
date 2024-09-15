@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/controller/cart_controller.dart';
+import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/view/widget/cart/curstomtopappar.dart';
 import 'package:ecommerce_app/view/widget/cart/custombuttomcart.dart';
@@ -6,38 +8,42 @@ import 'package:ecommerce_app/view/widget/cart/customorder.dart';
 import 'package:ecommerce_app/view/widget/cart/custompriceshipping.dart';
 import 'package:ecommerce_app/view/widget/cart/topcardcart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Cart extends StatelessWidget {
   const Cart({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(CartControllerImp());
     return Scaffold(
-      bottomNavigationBar: Custombuttomnavigatorcart(),
-      body: Container(
-        color: AppColor.white,
-        child: ListView(
-          children: [
-            Curstomtopappar(
-              title: "My Cart",
+        bottomNavigationBar: Custombuttomnavigatorcart(),
+        body: GetBuilder<CartControllerImp>(
+          builder: (controller) => Handlingdataview(
+            statusRequest: controller.statusRequest,
+            widget: Container(
+              color: AppColor.white,
+              child: ListView(
+                children: [
+                  Curstomtopappar(
+                    title: "My Cart",
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Topcardcart(title: "You have ${controller.nbreoccurenceorder} items in Your List "),
+                  ...List.generate(controller.data.length, (index) {
+                    return Customorder(
+                      count: "${controller.data[index].nbreoccurence}",
+                      price: "${controller.data[index].price}",
+                      title: "${controller.data[index].itemsName}",
+                      imagename: "${controller.data[index].itemsImage}",
+                    );
+                  })
+                ],
+              ),
             ),
-            SizedBox(
-              height: 5,
-            ),
-            Topcardcart(title: "You have 2 items in Your List "),
-            Customorder(
-              count: "2",
-              price: "200",
-              title: "MackBook 2",
-            ),
-            Customorder(
-              count: "2",
-              price: "200",
-              title: "MackBook 2",
-            ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

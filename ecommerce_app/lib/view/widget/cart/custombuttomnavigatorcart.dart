@@ -1,8 +1,10 @@
+import 'package:ecommerce_app/controller/cart_controller.dart';
 import 'package:ecommerce_app/view/widget/cart/custombuttomcart.dart';
 import 'package:ecommerce_app/view/widget/cart/custompriceshipping.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Custombuttomnavigatorcart extends StatelessWidget {
+class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
   const Custombuttomnavigatorcart({super.key});
 
   @override
@@ -16,7 +18,7 @@ class Custombuttomnavigatorcart extends StatelessWidget {
               height: 10,
             ),
             Custompriceshipping(
-              price: "1200",
+              price: "${controller.totalprice}",
               title: "Price",
             ),
             SizedBox(

@@ -3,22 +3,27 @@ import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/function/handlingdata.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/cart_data.dart';
+import 'package:ecommerce_app/data/model/catmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class CartController extends GetxController {
   addCart(String itemsid);
   removeCart(String itemsid);
-  
+  getcountcart(String itemsid);
+  view();
 }
 
 class CartControllerImp extends CartController {
   StatusRequest statusRequest = StatusRequest.none;
   CartData cartData = CartData(Get.find());
   MyServices myServices = Get.find();
+  int count = 0;
+  List<Catmodel> data = [];
+  int nbreoccurenceorder = 0;
+  int totalprice = 0;
 
-  
-
+  @override
   addCart(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
@@ -37,7 +42,7 @@ class CartControllerImp extends CartController {
           backgroundColor: AppColor.primaycolor, // Background color
           colorText: Colors.white, // Text color
           icon: Icon(Icons.check_circle, color: Colors.white), // Optional icon
-          duration: Duration(seconds: 2), // Display duration
+          duration: Duration(seconds: 1), // Display duration
           margin: EdgeInsets.all(10), // Margin around the snackbar
         );
       } else {
@@ -47,6 +52,7 @@ class CartControllerImp extends CartController {
     }
   }
 
+  @override
   removeCart(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
@@ -65,7 +71,7 @@ class CartControllerImp extends CartController {
           backgroundColor: AppColor.primaycolor, // Background color
           colorText: Colors.white, // Text color
           icon: Icon(Icons.remove_circle, color: Colors.white), // Optional icon
-          duration: Duration(seconds: 2), // Display duration
+          duration: Duration(seconds: 1), // Display duration
           margin: EdgeInsets.all(10), // Margin around the snackbar
         );
       } else {
@@ -73,5 +79,55 @@ class CartControllerImp extends CartController {
         statusRequest = StatusRequest.failed;
       }
     }
+  }
+
+  @override
+  getcountcart(String itemsid) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cartData.getcountcart(
+        myServices.sharedPreferences.getString("id")!, itemsid);
+    if (response == null) {
+      statusRequest = StatusRequest.failed;
+    }
+    statusRequest = HandleData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        count = response['data'];
+        print(count);
+        return count;
+      } else {
+        statusRequest = StatusRequest.failed;
+      }
+    }
+    update();
+  }
+
+  view() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cartData
+        .getdataCart(myServices.sharedPreferences.getString("id")!);
+    if (response == null) {
+      statusRequest = StatusRequest.failed;
+    }
+    statusRequest = HandleData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        List dataresponsive = response['data'];
+        data.addAll(dataresponsive.map((e) => Catmodel.fromJson(e)));
+        totalprice = response['pricecount']['price'];
+        nbreoccurenceorder = int.parse(response['pricecount']['nbreoccurence']);
+      } else {
+        statusRequest = StatusRequest.failed;
+      }
+    }
+    update();
+  }
+
+  @override
+  void onInit() {
+    view();
+    super.onInit();
   }
 }

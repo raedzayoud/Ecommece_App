@@ -1,12 +1,20 @@
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
+import 'package:ecommerce_app/linkapi.dart';
 import 'package:flutter/material.dart';
+import 'package:hash_cached_image/hash_cached_image.dart';
 
 class Customorder extends StatelessWidget {
   final String title;
   final String price;
   final String count;
-  const Customorder({super.key, required this.title, required this.price, required this.count});
+  final String imagename;
+  const Customorder(
+      {super.key,
+      required this.title,
+      required this.price,
+      required this.count,
+      required this.imagename});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +28,10 @@ class Customorder extends StatelessWidget {
               margin: EdgeInsets.only(left: 5),
               height: 107,
               child: Expanded(
-                  flex: 2, child: Image.asset(AppImageassets.logoauth)),
+                  flex: 2, child: HashCachedImage(imageUrl: "${AppLinkApi.imagesItems}/${imagename}")),
             ),
             Expanded(
-                flex: 3,
+                flex: 5,
                 child: ListTile(
                   title: Text(title),
                   subtitle: Text(
