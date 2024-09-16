@@ -15,7 +15,8 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartControllerImp());
+    CartControllerImp cartControllerImp= Get.put(CartControllerImp());
+    cartControllerImp.refreshPage();
     return Scaffold(
         bottomNavigationBar: Custombuttomnavigatorcart(),
         body: GetBuilder<CartControllerImp>(
@@ -31,9 +32,21 @@ class Cart extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  Topcardcart(title: "You have ${controller.nbreoccurenceorder} items in Your List "),
+                  Topcardcart(
+                      title:
+                          "You have ${controller.nbreoccurenceorder} items in Your List "),
                   ...List.generate(controller.data.length, (index) {
                     return Customorder(
+                      onAdd: () async {
+                        await controller
+                            .addCart("${controller.data[index].itemsId}");
+                        controller.refreshPage();
+                      },
+                      onRemove: () async {
+                        await controller
+                            .removeCart("${controller.data[index].itemsId}");
+                        controller.refreshPage();
+                      },
                       count: "${controller.data[index].nbreoccurence}",
                       price: "${controller.data[index].price}",
                       title: "${controller.data[index].itemsName}",

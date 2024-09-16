@@ -8,9 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class CartController extends GetxController {
-  addCart(String itemsid);
-  removeCart(String itemsid);
-  getcountcart(String itemsid);
   view();
 }
 
@@ -23,7 +20,8 @@ class CartControllerImp extends CartController {
   int nbreoccurenceorder = 0;
   int totalprice = 0;
 
-  @override
+
+  
   addCart(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
@@ -50,9 +48,11 @@ class CartControllerImp extends CartController {
         statusRequest = StatusRequest.failed;
       }
     }
+
+    update();
   }
 
-  @override
+  
   removeCart(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
@@ -79,33 +79,14 @@ class CartControllerImp extends CartController {
         statusRequest = StatusRequest.failed;
       }
     }
+    update();
   }
 
   @override
-  getcountcart(String itemsid) async {
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await cartData.getcountcart(
-        myServices.sharedPreferences.getString("id")!, itemsid);
-    if (response == null) {
-      statusRequest = StatusRequest.failed;
-    }
-    statusRequest = HandleData(response);
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == 'success') {
-        count = response['data'];
-        print(count);
-        return count;
-      } else {
-        statusRequest = StatusRequest.failed;
-      }
-    }
-    update();
-  }
-
   view() async {
     statusRequest = StatusRequest.loading;
     update();
+    data.clear();
     var response = await cartData
         .getdataCart(myServices.sharedPreferences.getString("id")!);
     if (response == null) {
@@ -115,8 +96,9 @@ class CartControllerImp extends CartController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
         List dataresponsive = response['data'];
+        data.clear();
         data.addAll(dataresponsive.map((e) => Catmodel.fromJson(e)));
-        totalprice = response['pricecount']['price'];
+        totalprice = response['pricecount']['price'] ?? 0;
         nbreoccurenceorder = int.parse(response['pricecount']['nbreoccurence']);
       } else {
         statusRequest = StatusRequest.failed;
@@ -125,9 +107,21 @@ class CartControllerImp extends CartController {
     update();
   }
 
+  resetCart() {
+    int nbreoccurenceorder = 0;
+    int totalprice = 0;
+  }
+
+  @override
+  void refreshPage() {
+    resetCart();
+    view();
+  }
+
   @override
   void onInit() {
     view();
     super.onInit();
   }
+  
 }

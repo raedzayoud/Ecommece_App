@@ -15,7 +15,9 @@ class Homescreen extends StatelessWidget {
         builder: (controller) => Scaffold(
               floatingActionButton: FloatingActionButton(
                 backgroundColor: AppColor.white,
-                onPressed: () {},
+                onPressed: () {
+                  controller.GoTocart();
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 child: Icon(Icons.shopping_basket_outlined),

@@ -30,6 +30,7 @@ class AppLinkApi {
   //===================================DataItems===================================//
 
   static String items = "$linkServeurName/items/view.php";
+  static String search = "$linkServeurName/items/search.php";
 
   //===================================Favourite===================================//
 

@@ -24,11 +24,11 @@ class Itemscategories extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              Customappar(
-                titleappar: "Find Your Product ",
-                onPressedIcon: () {},
-                onPressedSearch: () {},
-              ),
+              // Customappar(
+              //   titleappar: "Find Your Product ",
+              //   onPressedIcon: () {},
+              //   onPressedSearch: () {},
+              // ),
               const SizedBox(height: 10),
               Listitems(),
               Expanded(

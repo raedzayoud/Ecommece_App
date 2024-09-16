@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 abstract class MyfavouriteController extends GetxController {
   setFavoutite(id, val);
   getData();
+  refreshdata();
 }
 
 class MyfavouriteControllerImp extends MyfavouriteController {
@@ -27,8 +28,9 @@ class MyfavouriteControllerImp extends MyfavouriteController {
     update();
   }
 
+  @override
   getData() async {
-    statusRequest = StatusRequest.loading;
+  //  statusRequest = StatusRequest.loading;
     update();
     var response = await myfavouriteData
         .getMyFavourite(myServices.sharedPreferences.getString("id")!);
@@ -49,7 +51,7 @@ class MyfavouriteControllerImp extends MyfavouriteController {
 
   deletefavourite(String favouriteid) async {
     statusRequest = StatusRequest.loading; // Show loading state
-    update(); // Update UI to show loading
+   // update(); // Update UI to show loading
 
     var response = await myfavouriteData
         .deleteFavourite(favouriteid); // Wait for the delete response
@@ -57,16 +59,23 @@ class MyfavouriteControllerImp extends MyfavouriteController {
     if (response['status'] == 'success') {
       allData.removeWhere((element) =>
           element.favouriteId == favouriteid); // Remove from list if successful
-    //  update(['favouriteList']);
+      //  update(['favouriteList']);
     }
 
     statusRequest = StatusRequest.success; // Reset status
-    update(); // Refresh UI
+    // update(); // Refresh UI
+    //update();
   }
 
   @override
   void onInit() {
     getData();
     super.onInit();
+  }
+
+  @override
+  refreshdata() {
+    allData.clear();
+    getData();
   }
 }

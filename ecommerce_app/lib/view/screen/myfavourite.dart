@@ -20,12 +20,12 @@ class Myfavourite extends StatelessWidget {
        //     id: 'favouriteList',
             builder: (controller) => ListView(
               children: [
-                Customappar(
-                  titleappar: "Find Product ",
-                  onPressedIcon: () {},
-                  onPressedSearch: () {},
-                  onPressedFavourite: () {},
-                ),
+                // Customappar(
+                //   titleappar: "Find Product ",
+                //   onPressedIcon: () {},
+                //   onPressedSearch: () {},
+                //   onPressedFavourite: () {},
+                // ),
                 SizedBox(
                   height: 20,
                 ),

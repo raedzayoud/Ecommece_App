@@ -9,12 +9,16 @@ class Customorder extends StatelessWidget {
   final String price;
   final String count;
   final String imagename;
+  final void Function()? onAdd;
+  final void Function()? onRemove;
   const Customorder(
       {super.key,
       required this.title,
       required this.price,
       required this.count,
-      required this.imagename});
+      required this.imagename,
+      required this.onAdd,
+      required this.onRemove});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,9 @@ class Customorder extends StatelessWidget {
               margin: EdgeInsets.only(left: 5),
               height: 107,
               child: Expanded(
-                  flex: 2, child: HashCachedImage(imageUrl: "${AppLinkApi.imagesItems}/${imagename}")),
+                  flex: 2,
+                  child: HashCachedImage(
+                      imageUrl: "${AppLinkApi.imagesItems}/${imagename}")),
             ),
             Expanded(
                 flex: 5,
@@ -42,9 +48,9 @@ class Customorder extends StatelessWidget {
             Expanded(
                 child: Column(
               children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+                IconButton(onPressed: onAdd, icon: Icon(Icons.add)),
                 Text(count),
-                IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                IconButton(onPressed: onRemove, icon: Icon(Icons.remove)),
               ],
             )),
           ],

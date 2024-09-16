@@ -9,7 +9,7 @@ class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GetBuilder<CartControllerImp>(builder: (controller)=>Container(
         color: Colors.white,
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -47,6 +47,6 @@ class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
             ),
           ],
         ),
-      );
+      ));
   }
 }

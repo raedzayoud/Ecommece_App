@@ -1,8 +1,5 @@
-import 'package:ecommerce_app/controller/favourite_controller.dart';
-import 'package:ecommerce_app/controller/items_controller.dart';
 import 'package:ecommerce_app/controller/myfavourite_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
-import 'package:ecommerce_app/data/model/itemsmodel.dart';
 import 'package:ecommerce_app/data/model/myfavourite.dart';
 import 'package:ecommerce_app/linkapi.dart';
 import 'package:flutter/material.dart';
@@ -76,9 +73,9 @@ class Customlistitemsfavourite extends GetView<MyfavouriteControllerImp> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    IconButton(onPressed: (){
-                      controller.deletefavourite(itemsModel.favouriteId.toString());
-                       controller.update();
+                    IconButton(onPressed: ()async{
+                     await controller.deletefavourite(itemsModel.favouriteId.toString());
+                       controller.refreshdata();
                     }, icon: Icon(Icons.delete))
                   ],
                 ),
