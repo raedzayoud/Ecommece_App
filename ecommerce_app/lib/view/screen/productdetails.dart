@@ -84,7 +84,7 @@ class Productdetails extends StatelessWidget {
                         height: 10,
                       ),
                       Quantityandprice(
-                        price: "${controllerImp.itemsModel.itemsPrice}",
+                        price: "${controllerImp.itemsModel.itemsDiscounts==0?controllerImp.itemsModel.itemsPrice:controllerImp.itemsModel.itemsdiscount}",
                         quantity: "${controllerImp.count}",
                         onAdd: () {
                           controllerImp.add();

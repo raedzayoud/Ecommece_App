@@ -48,7 +48,7 @@ class Cart extends StatelessWidget {
                         controller.refreshPage();
                       },
                       count: "${controller.data[index].nbreoccurence}",
-                      price: "${controller.data[index].price}",
+                      price: "${ controller.data[index].price}",
                       title: "${controller.data[index].itemsName}",
                       imagename: "${controller.data[index].itemsImage}",
                     );

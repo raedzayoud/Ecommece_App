@@ -82,6 +82,7 @@ class SearchMixData extends GetxController {
   checkSearch(val) {
     if (val == "") {
       isSearch = false;
+      statusRequest=StatusRequest.none;
     }
     update();
   }

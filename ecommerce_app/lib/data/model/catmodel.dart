@@ -33,8 +33,8 @@ class Catmodel {
       this.itemsCategories});
 
   Catmodel.fromJson(Map<String, dynamic> json) {
-    price = json['price'];
-    nbreoccurence = json['nbreoccurence'];
+    price = json['itemsprice'];
+    nbreoccurence = json['countitmes'];
     cartId = json['cart_id'];
     cartUsersid = json['cart_usersid'];
     cartItemsid = json['cart_itemsid'];
