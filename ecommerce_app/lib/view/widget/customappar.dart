@@ -28,12 +28,15 @@ class Customappar extends StatelessWidget {
               child: TextFormField(
             controller: controller,
             onChanged: onChanged,
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
+                //  labelStyle: TextStyle(color: AppColor.black),
                 prefixIcon: IconButton(
                   onPressed: onPressedSearch,
                   icon: Icon(Icons.search),
                 ),
                 hintText: titleappar,
+                //labelText: titleappar,
                 hintStyle: TextStyle(fontSize: 17, color: AppColor.black),
                 border: OutlineInputBorder(
                     borderSide: BorderSide.none,

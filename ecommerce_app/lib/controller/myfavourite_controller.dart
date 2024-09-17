@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controller/homepage_controller.dart';
 import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/function/handlingdata.dart';
@@ -9,7 +10,7 @@ import 'package:ecommerce_app/view/screen/myfavourite.dart' hide Myfavourite;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class MyfavouriteController extends GetxController {
+abstract class MyfavouriteController extends SearchMixData {
   setFavoutite(id, val);
   getData();
   refreshdata();
@@ -24,6 +25,7 @@ class MyfavouriteControllerImp extends MyfavouriteController {
 
   @override
   setFavoutite(id, val) {
+    searchcontroller=TextEditingController();
     isfavorite[id] = val;
     update();
   }
@@ -69,6 +71,7 @@ class MyfavouriteControllerImp extends MyfavouriteController {
 
   @override
   void onInit() {
+    searchcontroller=TextEditingController();
     getData();
     super.onInit();
   }

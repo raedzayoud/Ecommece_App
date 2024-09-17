@@ -1,12 +1,14 @@
+import 'package:ecommerce_app/controller/homepage_controller.dart';
 import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/core/function/handlingdata.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/items_data.dart';
 import 'package:ecommerce_app/data/model/itemsmodel.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class ItemsController extends GetxController {
+abstract class ItemsController extends SearchMixData {
   initialData();
   changeitem(int val, int catid);
   getItems(String catid);
@@ -32,6 +34,7 @@ class ItemsControllerImp extends ItemsController {
     selectCat = Get.arguments['selectCat'];
     catid = Get.arguments['idcat'];
     getItems(catid.toString());
+    searchcontroller=TextEditingController();
   }
 
   @override

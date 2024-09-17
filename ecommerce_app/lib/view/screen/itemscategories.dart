@@ -3,6 +3,7 @@ import 'package:ecommerce_app/controller/items_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/data/model/itemsmodel.dart';
+import 'package:ecommerce_app/view/screen/home.dart';
 import 'package:ecommerce_app/view/widget/customappar.dart';
 import 'package:ecommerce_app/view/widget/items/customlistitemsgrid.dart';
 import 'package:ecommerce_app/view/widget/items/listitems.dart';
@@ -14,7 +15,7 @@ class Itemscategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ItemsControllerImp());
+   ItemsControllerImp controller= Get.put(ItemsControllerImp());
     FavouriteControllerImp favouriteControllerImp=Get.put(FavouriteControllerImp());
 
     return Scaffold(
@@ -24,18 +25,27 @@ class Itemscategories extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              // Customappar(
-              //   titleappar: "Find Your Product ",
-              //   onPressedIcon: () {},
-              //   onPressedSearch: () {},
-              // ),
+              Customappar(
+                  controller: controller.searchcontroller!,
+                  titleappar: "Find Product",
+                  onPressedIcon: () {},
+                  onPressedSearch: () {
+                    controller.onSearchItems();
+                  },
+                  onPressedFavourite: () {
+                    controller.goToFavourite();
+                  },
+                  onChanged: (val) {
+                    controller.checkSearch(val);
+                  },
+                ),
               const SizedBox(height: 10),
               Listitems(),
               Expanded(
                 child: GetBuilder<ItemsControllerImp>(
                   builder: (controller) => Handlingdataview(
                     statusRequest: controller.statusRequest,
-                    widget: GridView.builder(
+                    widget: controller.isSearch==false? GridView.builder(
                       itemCount: controller.data.length,
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
@@ -51,7 +61,11 @@ class Itemscategories extends StatelessWidget {
                               ItemsModel.fromJson(controller.data[index])
                         );
                       },
-                    ),
+                    ):Center(
+                          child: ListItemsSearch(
+                            itemsModel: controller.dataItems,
+                          ),
+                        ),
                   ),
                 ),
               ),

@@ -7,11 +7,10 @@ import 'package:ecommerce_app/data/model/itemsmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class HomepageController extends GetxController {
+abstract class HomepageController extends SearchMixData {
   initialData();
   getData();
   goToItems(List categories, int selectCat, int categorieid);
-  goToFavourite();
 }
 
 class HomepageControllerImp extends HomepageController {
@@ -26,7 +25,6 @@ class HomepageControllerImp extends HomepageController {
   List<ItemsModel> dataItems = [];
   initialData() {
     username = myServices.sharedPreferences.getString("username");
-
     searchcontroller = TextEditingController();
   }
 
@@ -68,10 +66,18 @@ class HomepageControllerImp extends HomepageController {
     });
   }
 
-  @override
-  goToFavourite() {
-    Get.toNamed(AppRoutes.Myfavourite);
+  getToProductDetails(ItemsModel itemsModel) {
+    Get.toNamed(AppRoutes.productdetails,
+        arguments: {"itemsModel": itemsModel});
   }
+}
+
+class SearchMixData extends GetxController {
+  bool isSearch = false;
+  StatusRequest statusRequest = StatusRequest.none;
+  List<ItemsModel> dataItems = [];
+  HomeData homeData = HomeData(Get.find());
+  TextEditingController? searchcontroller;
 
   checkSearch(val) {
     if (val == "") {
@@ -81,10 +87,13 @@ class HomepageControllerImp extends HomepageController {
   }
 
   onSearchItems() {
-    dataItems.clear();
     isSearch = true;
     SearchData();
     update();
+  }
+
+  goToFavourite() {
+    Get.toNamed(AppRoutes.Myfavourite);
   }
 
   SearchData() async {
@@ -98,6 +107,7 @@ class HomepageControllerImp extends HomepageController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
         List responsedata = response['data'];
+        dataItems.clear();
         dataItems.addAll(responsedata.map((e) => ItemsModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.failed;

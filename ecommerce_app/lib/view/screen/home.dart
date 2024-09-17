@@ -2,6 +2,7 @@ import 'package:ecommerce_app/controller/homepage_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/data/model/itemsmodel.dart';
+import 'package:ecommerce_app/linkapi.dart';
 import 'package:ecommerce_app/view/widget/customappar.dart';
 import 'package:ecommerce_app/view/widget/home/customcardhome.dart';
 import 'package:ecommerce_app/view/widget/home/customtexttitle.dart';
@@ -9,6 +10,7 @@ import 'package:ecommerce_app/view/widget/home/listcategories.dart';
 import 'package:ecommerce_app/view/widget/home/listitemshome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hash_cached_image/hash_cached_image.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -81,7 +83,7 @@ class Home extends StatelessWidget {
   }
 }
 
-class ListItemsSearch extends StatelessWidget {
+class ListItemsSearch extends GetView<HomepageControllerImp> {
   final List<ItemsModel> itemsModel;
   const ListItemsSearch({super.key, required this.itemsModel});
 
@@ -95,7 +97,50 @@ class ListItemsSearch extends StatelessWidget {
         shrinkWrap: true,
         itemCount: itemsModel.length,
         itemBuilder: (context, index) {
-          return Text("${itemsModel[index].itemsName}");
+          return InkWell(
+            onTap: (){
+              controller.getToProductDetails(itemsModel[index]);
+            },
+            child: Card(
+              color: AppColor.white,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: HashCachedImage(
+                      imageUrl:
+                          "${AppLinkApi.imagesItems}/${itemsModel[index].itemsImage}",
+                    ),
+                  ),
+                  SizedBox(width: 10,),
+                  Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${itemsModel[index].itemsName}",
+                        style:
+                            TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "${itemsModel[index].categoriesName}",
+                        style: TextStyle(),
+                      ),
+                       SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "${itemsModel[index].itemsPrice}\$",
+                        style: TextStyle(color: AppColor.primaycolor),
+                      ),
+                    ],
+                  )),
+                ],
+              ),
+            ),
+          );
         },
       ),
     );

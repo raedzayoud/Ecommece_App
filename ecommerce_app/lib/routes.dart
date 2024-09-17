@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? getPages = [
- GetPage(name: "/", page: () => Onborading(), middlewares: [Mymiddleware()]),
+ GetPage(name: "/", page: () => Onborading()),
   GetPage(name: AppRoutes.cart, page: () => Cart()),
   GetPage(name: AppRoutes.productdetails, page: () => Productdetails()),
   // GetPage(name: "/", page: () => TestView()),
