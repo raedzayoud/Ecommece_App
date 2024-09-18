@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/core/middleware/mymiddleware.dart';
+import 'package:ecommerce_app/view/screen/address/add.dart';
+import 'package:ecommerce_app/view/screen/address/view.dart';
 import 'package:ecommerce_app/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:ecommerce_app/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:ecommerce_app/view/screen/auth/forgetpassword/success_resetpassword.dart';
@@ -14,7 +16,7 @@ import 'package:ecommerce_app/view/screen/itemscategories.dart';
 import 'package:ecommerce_app/view/screen/myfavourite.dart';
 import 'package:ecommerce_app/view/screen/onborading.dart';
 import 'package:ecommerce_app/view/screen/productdetails.dart';
-import 'package:flutter/material.dart';
+import 'package:ecommerce_app/view/screen/settings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? getPages = [
@@ -34,4 +36,8 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AppRoutes.verifycode, page: () => Verifycode()),
   GetPage(name: AppRoutes.items, page: () => Itemscategories()),
   GetPage(name: AppRoutes.Myfavourite, page: () => Myfavourite()),
+  // address
+  GetPage(name: AppRoutes.adressview, page: () => Adressview()),
+  GetPage(name: AppRoutes.addaddress, page: () => Adressadd()),
+  GetPage(name: AppRoutes.adressview, page: () => Settings()),
 ];

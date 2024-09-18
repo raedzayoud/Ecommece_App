@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 
 abstract class SettingsController extends GetxController {
   Logout();
-   isActivenotification(bool isActive);
+  isActivenotification(bool isActive);
+  goToAddress();
 }
 
 class SettingsControllerImp extends SettingsController {
@@ -20,5 +21,13 @@ class SettingsControllerImp extends SettingsController {
    isActivenotification(bool isActive) {
     isActive1=isActive;
      update();
+  }
+  
+  @override
+  goToAddress() {
+    Get.toNamed(AppRoutes.adressview);
+  }
+  goToSettings() {
+    Get.back();
   }
 }

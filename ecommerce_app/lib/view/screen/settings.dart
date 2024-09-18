@@ -9,9 +9,10 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     Get.put(SettingsControllerImp());
+    SettingsControllerImp controllerImp = Get.put(SettingsControllerImp());
     return Scaffold(
-      body: GetBuilder<SettingsControllerImp>(builder: (controllerImp)=>Container(
+        body: GetBuilder<SettingsControllerImp>(
+      builder: (controllerImp) => Container(
         color: AppColor.white,
         child: ListView(
           children: [
@@ -48,34 +49,39 @@ class Settings extends StatelessWidget {
                 child: Column(
                   children: [
                     ListTile(
-                      onTap: (){},
+                      onTap: () {},
                       title: Text("Disable Notifications "),
-                      trailing: Switch(onChanged: (val){
-                         controllerImp.isActivenotification(val);
-                      },value:controllerImp.isActive1 ,),
+                      trailing: Switch(
+                        onChanged: (val) {
+                          controllerImp.isActivenotification(val);
+                        },
+                        value: controllerImp.isActive1,
+                      ),
                     ),
                     Divider(),
                     ListTile(
-                      onTap: (){},
+                      onTap: () {
+                        controllerImp.goToAddress();
+                      },
                       title: Text("Address"),
                       trailing: Icon(Icons.location_on_outlined),
                     ),
                     Divider(),
                     ListTile(
-                      onTap: (){},
+                      onTap: () {},
                       title: Text("About us "),
                       trailing: Icon(Icons.help_outline),
                     ),
                     Divider(),
                     ListTile(
-                      onTap: (){},
+                      onTap: () {},
                       title: Text("Contact us"),
                       trailing: Icon(Icons.phone_callback_outlined),
                     ),
                     Divider(),
                     ListTile(
                       title: Text("Logout "),
-                      onTap: (){
+                      onTap: () {
                         controllerImp.Logout();
                       },
                       trailing: Icon(Icons.logout),
@@ -86,7 +92,7 @@ class Settings extends StatelessWidget {
             )
           ],
         ),
-      ),)
-    );
+      ),
+    ));
   }
 }
