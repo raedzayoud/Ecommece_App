@@ -39,5 +39,8 @@ List<GetPage<dynamic>>? getPages = [
   // address
   GetPage(name: AppRoutes.adressview, page: () => Adressview()),
   GetPage(name: AppRoutes.addaddress, page: () => Adressadd()),
+  
+  //settings
   GetPage(name: AppRoutes.adressview, page: () => Settings()),
+
 ];

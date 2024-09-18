@@ -43,7 +43,12 @@ class AppLinkApi {
   //===================================Cart===================================//
   static String addCart = "$linkServeurName/Cart/add.php";
   static String removeCart = "$linkServeurName/Cart/delete.php";
-  static String viewCart= "$linkServeurName/Cart/view.php";
-  static String getcountcart= "$linkServeurName/Cart/getcount.php";
-  
+  static String viewCart = "$linkServeurName/Cart/view.php";
+  static String getcountcart = "$linkServeurName/Cart/getcount.php";
+
+  // address
+  static String addAddress = "$linkServeurName/address/add.php";
+  static String removeAddress = "$linkServeurName/address/delete.php";
+  static String viewAddress = "$linkServeurName/address/view.php";
+
 }

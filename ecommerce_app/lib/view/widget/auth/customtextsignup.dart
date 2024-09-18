@@ -17,7 +17,7 @@ class Customtextsignup extends StatelessWidget {
           onTap: onTap,
           child: Text(
             textwo,
-            style: TextStyle(color: AppColor.blue, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColor.primaycolor, fontWeight: FontWeight.bold),
           ),
         )
       ],

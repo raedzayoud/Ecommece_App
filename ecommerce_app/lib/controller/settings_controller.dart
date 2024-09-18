@@ -1,6 +1,14 @@
+import 'package:ecommerce_app/controller/address/addressview_controller.dart';
 import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:get/get.dart';
+
+
+/*
+
+You Must used solution more better 
+
+*/ 
 
 abstract class SettingsController extends GetxController {
   Logout();
@@ -9,6 +17,8 @@ abstract class SettingsController extends GetxController {
 }
 
 class SettingsControllerImp extends SettingsController {
+  AddressviewControllerImp controllerImp =
+        Get.put(AddressviewControllerImp());
   bool isActive1=false;
   MyServices myServices = Get.find();
   @override
@@ -25,6 +35,7 @@ class SettingsControllerImp extends SettingsController {
   
   @override
   goToAddress() {
+    controllerImp.refreshData();
     Get.toNamed(AppRoutes.adressview);
   }
   goToSettings() {
