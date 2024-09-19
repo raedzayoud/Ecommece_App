@@ -14,10 +14,12 @@ class Adressview extends StatelessWidget {
   Widget build(BuildContext context) {
     AddressviewControllerImp controllerImp =
         Get.put(AddressviewControllerImp());
+   // controllerImp.refreshpage();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Get.toNamed(AppRoutes.addaddress);
+            onPressed: ()  {
+               Get.toNamed(AppRoutes.addaddress);
+              
             },
             child: Icon(
               Icons.add,
@@ -42,11 +44,17 @@ class Adressview extends StatelessWidget {
           builder: (controllerImp) => Handlingdataview(
             statusRequest: controllerImp.statusRequest,
             widget: Container(
+              color: AppColor.white,
               child: ListView.builder(
                   itemCount: controllerImp.data.length,
                   itemBuilder: (context, index) {
                     return CartAddress(
                       addressmodel: controllerImp.data[index],
+                      onPressed: () async {
+                        await controllerImp.deleteAddress(
+                            controllerImp.data[index].addressId.toString());
+                        controllerImp.refreshpage();
+                      },
                     );
                   }),
             ),
@@ -57,19 +65,28 @@ class Adressview extends StatelessWidget {
 
 class CartAddress extends StatelessWidget {
   final addressModel addressmodel;
-  const CartAddress({super.key, required this.addressmodel});
+  final void Function()? onPressed;
+  const CartAddress({super.key, required this.addressmodel, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        color: AppColor.white,
-        child: Container(
-          child: ListTile(
-            title: Text("${addressmodel.addressName}"),
-            subtitle: Text(
-                "${addressmodel.addressCity}  ${addressmodel.addressCity}"),
-            trailing: IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-          ),
-        ));
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+      child: Card(
+          color: AppColor.white,
+          child: Container(
+            child: ListTile(
+              title: Text("${addressmodel.addressName}",style: TextStyle(fontWeight: FontWeight.w600),),
+              subtitle: Text(
+                  "${addressmodel.addressCity}  ${addressmodel.addressStreet}"),
+              trailing: IconButton(
+                  onPressed: onPressed,
+                  icon: Icon(
+                    Icons.delete,
+                    color: AppColor.black,
+                  )),
+            ),
+          )),
+    );
   }
 }

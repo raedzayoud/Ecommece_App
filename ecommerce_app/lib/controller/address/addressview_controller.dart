@@ -13,12 +13,6 @@ class AddressviewControllerImp extends AddressviewController {
   AddressData addressData = AddressData(Get.find());
   List<addressModel> data = [];
 
-  @override
-  void onInit() {
-    viewAddress();
-    super.onInit();
-  }
-
   viewAddress() async {
     statusRequest = StatusRequest.loading;
     update();
@@ -40,7 +34,19 @@ class AddressviewControllerImp extends AddressviewController {
     update();
   }
 
-  void refreshData() async {
-    await viewAddress();
+  void refreshpage() {
+    viewAddress();
+  }
+
+  deleteAddress(String addressid) async {
+    var response = await addressData.deleteAddress(addressid);
+    data.removeWhere((element) => element.addressId == addressid);
+    update();
+  }
+
+  @override
+  void onInit() {
+    viewAddress();
+    super.onInit();
   }
 }

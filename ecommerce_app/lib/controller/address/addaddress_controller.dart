@@ -42,10 +42,14 @@ class AddaddressControllerImp extends AddaddressController {
         Get.snackbar(
           "Information", // Title
           "The address was added successfully", // Message
-          snackPosition: SnackPosition.BOTTOM, // Position of the snackba
+          snackPosition: SnackPosition.BOTTOM, // Position of the snackbar
           duration: Duration(seconds: 2), // Display duration
           margin: EdgeInsets.all(10), // Margin around the snackbar
+          backgroundColor: Colors.black, // Set the background color to black
+          colorText:
+              Colors.white, // Optional: Set text color to white for contrast
         );
+        //Get.back(result: true);
         Get.offNamed(AppRoutes.settings);
       } else {
         statusRequest = StatusRequest.failed;

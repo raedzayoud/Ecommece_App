@@ -3,12 +3,11 @@ import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:get/get.dart';
 
-
 /*
 
 You Must used solution more better 
 
-*/ 
+*/
 
 abstract class SettingsController extends GetxController {
   Logout();
@@ -17,10 +16,9 @@ abstract class SettingsController extends GetxController {
 }
 
 class SettingsControllerImp extends SettingsController {
-  AddressviewControllerImp controllerImp =
-        Get.put(AddressviewControllerImp());
-  bool isActive1=false;
+  bool isActive1 = false;
   MyServices myServices = Get.find();
+  AddressviewControllerImp  addressviewControllerImp=Get.find();
   @override
   Logout() {
     myServices.sharedPreferences.clear();
@@ -28,16 +26,18 @@ class SettingsControllerImp extends SettingsController {
   }
 
   @override
-   isActivenotification(bool isActive) {
-    isActive1=isActive;
-     update();
+  isActivenotification(bool isActive) {
+    isActive1 = isActive;
+    update();
   }
-  
+
   @override
   goToAddress() {
-    controllerImp.refreshData();
+   addressviewControllerImp.refreshpage();
     Get.toNamed(AppRoutes.adressview);
+    
   }
+
   goToSettings() {
     Get.back();
   }
