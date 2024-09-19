@@ -50,5 +50,11 @@ class AppLinkApi {
   static String addAddress = "$linkServeurName/address/add.php";
   static String removeAddress = "$linkServeurName/address/delete.php";
   static String viewAddress = "$linkServeurName/address/view.php";
+  
+  //coupons
+  static String checkcoupon = "$linkServeurName/coupon/checkcoupon.php";
+  
+
+
 
 }

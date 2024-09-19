@@ -4,7 +4,9 @@ import 'package:ecommerce_app/core/function/handlingdata.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/cart_data.dart';
 import 'package:ecommerce_app/data/model/catmodel.dart';
+import 'package:ecommerce_app/data/model/couponmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 abstract class CartController extends GetxController {
@@ -12,6 +14,7 @@ abstract class CartController extends GetxController {
 }
 
 class CartControllerImp extends CartController {
+  TextEditingController? couponcontroller;
   StatusRequest statusRequest = StatusRequest.none;
   CartData cartData = CartData(Get.find());
   MyServices myServices = Get.find();
@@ -19,9 +22,12 @@ class CartControllerImp extends CartController {
   List<Catmodel> data = [];
   int nbreoccurenceorder = 0;
   int totalprice = 0;
+  couponModel? couponmodel;
 
+  String? couponname;
 
-  
+  int discountcoupon = 0;
+
   addCart(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
@@ -52,7 +58,6 @@ class CartControllerImp extends CartController {
     update();
   }
 
-  
   removeCart(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
@@ -107,6 +112,39 @@ class CartControllerImp extends CartController {
     update();
   }
 
+  checkcoupon() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cartData.checkcoupon(couponcontroller!.text);
+    if (response == null) {
+      statusRequest = StatusRequest.failed;
+    }
+    statusRequest = HandleData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        if (response['data'] is Map<String, dynamic>) {
+          Map<String, dynamic> datacoupon = response['data'];
+          couponmodel = couponModel.fromJson(datacoupon);
+          discountcoupon = couponmodel!.couponDiscount!;
+        } else if (response['data'] is List) {
+          // Handle the case where the data is a list, if needed.
+          // Example: You could take the first item or show an error.
+          List data = response['data'];
+          couponmodel = couponModel.fromJson(data);
+
+          discountcoupon = couponmodel!.couponDiscount!;
+        } else {
+          // Handle unexpected response structure
+          statusRequest = StatusRequest.failed;
+        }
+      } else {
+        statusRequest = StatusRequest.failed;
+      }
+    }
+
+    update();
+  }
+
   resetCart() {
     int nbreoccurenceorder = 0;
     int totalprice = 0;
@@ -120,8 +158,8 @@ class CartControllerImp extends CartController {
 
   @override
   void onInit() {
+    couponcontroller = TextEditingController();
     view();
     super.onInit();
   }
-  
 }

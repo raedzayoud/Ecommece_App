@@ -57,8 +57,24 @@ class CartData {
   }
 
   getdataCart(String userid) async {
-    var response = await crud.postData(
-        AppLinkApi.viewCart, {"userid": userid});
+    var response = await crud.postData(AppLinkApi.viewCart, {"userid": userid});
+
+    // Return the data based on whether the response is a success or failure
+    return response.fold(
+      (left) {
+        // Handle the error (left side)
+        return left; // Return null or some error object if you need to handle it differently
+      },
+      (right) {
+        // Handle the success (right side)
+        return right; // Return the successful response
+      },
+    );
+  }
+
+  checkcoupon(String couponcode) async {
+    var response =
+        await crud.postData(AppLinkApi.checkcoupon, {"couponcode": couponcode});
 
     // Return the data based on whether the response is a success or failure
     return response.fold(

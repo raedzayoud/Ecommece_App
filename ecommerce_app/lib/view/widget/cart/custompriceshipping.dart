@@ -26,7 +26,7 @@ class Custompriceshipping extends StatelessWidget {
             )),
         Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
-            child: Text("$price \$",
+            child: Text("$price",
                 style: TextStyle(
                     fontSize: 17,
                     fontWeight: isActive == true
