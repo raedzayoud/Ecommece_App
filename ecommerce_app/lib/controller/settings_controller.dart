@@ -18,7 +18,7 @@ abstract class SettingsController extends GetxController {
 class SettingsControllerImp extends SettingsController {
   bool isActive1 = false;
   MyServices myServices = Get.find();
-  AddressviewControllerImp  addressviewControllerImp=Get.find();
+  AddressviewControllerImp  addressviewControllerImp=Get.put(AddressviewControllerImp());
   @override
   Logout() {
     myServices.sharedPreferences.clear();

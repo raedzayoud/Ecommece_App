@@ -11,6 +11,7 @@ import 'package:ecommerce_app/view/screen/auth/singup.dart';
 import 'package:ecommerce_app/view/screen/auth/success_signup.dart';
 import 'package:ecommerce_app/view/screen/auth/verifycodesignup.dart';
 import 'package:ecommerce_app/view/screen/cart.dart';
+import 'package:ecommerce_app/view/screen/checkout.dart';
 import 'package:ecommerce_app/view/screen/homescreen.dart';
 import 'package:ecommerce_app/view/screen/itemscategories.dart';
 import 'package:ecommerce_app/view/screen/myfavourite.dart';
@@ -42,5 +43,7 @@ List<GetPage<dynamic>>? getPages = [
   
   //settings
   GetPage(name: AppRoutes.adressview, page: () => Settings()),
+  
+  GetPage(name: AppRoutes.checkout, page: () => Checkout()),
 
 ];

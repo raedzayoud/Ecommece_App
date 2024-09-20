@@ -13,13 +13,12 @@ class Adressview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AddressviewControllerImp controllerImp =
-        Get.put(AddressviewControllerImp());
+        Get.find();
    // controllerImp.refreshpage();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             onPressed: ()  {
                Get.toNamed(AppRoutes.addaddress);
-              
             },
             child: Icon(
               Icons.add,

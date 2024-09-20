@@ -22,7 +22,9 @@ class CartControllerImp extends CartController {
   List<Catmodel> data = [];
   int nbreoccurenceorder = 0;
   int totalprice = 0;
-  couponModel? couponmodel;
+  //couponModel? couponmodel;
+
+  List<couponModel> listCouponData = [];
 
   String? couponname;
 
@@ -87,6 +89,10 @@ class CartControllerImp extends CartController {
     update();
   }
 
+  getTotalPrice() {
+    return totalprice - ((totalprice * discountcoupon) / 100);
+  }
+
   @override
   view() async {
     statusRequest = StatusRequest.loading;
@@ -122,23 +128,25 @@ class CartControllerImp extends CartController {
     statusRequest = HandleData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
-        if (response['data'] is Map<String, dynamic>) {
-          Map<String, dynamic> datacoupon = response['data'];
-          couponmodel = couponModel.fromJson(datacoupon);
-          discountcoupon = couponmodel!.couponDiscount!;
-        } else if (response['data'] is List) {
-          // Handle the case where the data is a list, if needed.
-          // Example: You could take the first item or show an error.
-          List data = response['data'];
-          couponmodel = couponModel.fromJson(data);
-
-          discountcoupon = couponmodel!.couponDiscount!;
-        } else {
-          // Handle unexpected response structure
-          statusRequest = StatusRequest.failed;
-        }
+        List data = response['data'];
+        listCouponData.clear();
+        listCouponData
+            .addAll(data.map((e) => couponModel.fromJson(e)).toList());
+        discountcoupon = listCouponData[0].couponDiscount!;
+        couponname = listCouponData[0].couponName;
       } else {
-        statusRequest = StatusRequest.failed;
+        couponname=null;
+        discountcoupon=0;
+        Get.snackbar(
+          "Information", // Title
+          "Your coupont is not found , Please enter a valid coupont", // Message
+          snackPosition: SnackPosition.BOTTOM, // Position of the snackbar
+          duration: Duration(seconds: 3), // Display duration
+          margin: EdgeInsets.all(10), // Margin around the snackbar
+          backgroundColor: Colors.black, // Set the background color to black
+          colorText:
+              Colors.white, // Optional: Set text color to white for contrast
+        );
       }
     }
 

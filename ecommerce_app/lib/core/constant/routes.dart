@@ -16,4 +16,5 @@ class AppRoutes{
   static const String adressview ="/adressview";
   static const String settings ="/settings";
   static const String addaddress ="/addaddress";
+  static const String checkout ="/checkout";
 }

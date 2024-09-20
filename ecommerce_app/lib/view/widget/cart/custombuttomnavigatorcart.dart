@@ -1,11 +1,12 @@
 import 'package:ecommerce_app/controller/cart_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/view/widget/cart/custombuttomcart.dart';
 import 'package:ecommerce_app/view/widget/cart/custompriceshipping.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
+class Custombuttomnavigatorcart extends StatelessWidget {
   const Custombuttomnavigatorcart({super.key});
 
   @override
@@ -16,7 +17,7 @@ class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
+                  controller.couponname==null?Container(
                     margin: EdgeInsets.only(bottom: 20, left: 10),
                     child: Row(
                       children: [
@@ -30,7 +31,7 @@ class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
                                   hintStyle: TextStyle(),
                                   isDense: true,
                                   contentPadding:
-                                      EdgeInsets.symmetric(vertical: 4),
+                                      EdgeInsets.symmetric(vertical: 4,horizontal: 10),
                                   border: OutlineInputBorder()),
                             )),
                         SizedBox(
@@ -51,7 +52,7 @@ class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
                             )),
                       ],
                     ),
-                  ),
+                  ):Container(child: Text("")),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
@@ -88,7 +89,7 @@ class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
                             margin: EdgeInsets.symmetric(horizontal: 10),
                             child: Divider()),
                         Custompriceshipping(
-                          price: "1200\$",
+                          price: "${controller.getTotalPrice()}\$",
                           title: "Total Price",
                           isActive: true,
                         ),
@@ -99,8 +100,10 @@ class Custombuttomnavigatorcart extends GetView<CartControllerImp> {
                     ),
                   ),
                   Custombuttomcart(
-                    content: "Place Orders ",
-                    onPressed: () {},
+                    content: "Orders ",
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.checkout);
+                    },
                   ),
                 ],
               ),

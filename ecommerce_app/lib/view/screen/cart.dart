@@ -18,6 +18,15 @@ class Cart extends StatelessWidget {
     CartControllerImp cartControllerImp= Get.put(CartControllerImp());
     cartControllerImp.refreshPage();
     return Scaffold(
+      appBar: AppBar(
+        title: Text("My Cart"),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: AppColor.white),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+      ),
         bottomNavigationBar: Custombuttomnavigatorcart(),
         body: GetBuilder<CartControllerImp>(
           builder: (controller) => Handlingdataview(
@@ -26,9 +35,9 @@ class Cart extends StatelessWidget {
               color: AppColor.white,
               child: ListView(
                 children: [
-                  Curstomtopappar(
-                    title: "My Cart",
-                  ),
+                  // Curstomtopappar(
+                  //   title: "My Cart",
+                  // ),
                   SizedBox(
                     height: 5,
                   ),
