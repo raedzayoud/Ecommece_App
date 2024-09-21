@@ -16,6 +16,7 @@ class AppImageassets{
    static const String serverfailed="$rootLottie/serverfailed.json";
    static const String delevriy="$rootLottie/delevriy.json";
    static const String delevriyclient="$rootLottie/delevriyclient.json";
+   static const String basket="$rootLottie/basket.json";
 
 
 }

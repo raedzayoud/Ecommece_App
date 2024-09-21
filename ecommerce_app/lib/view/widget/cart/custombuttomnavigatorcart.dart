@@ -39,15 +39,18 @@ class Custombuttomnavigatorcart extends StatelessWidget {
                         ),
                         Expanded(
                             flex: 1,
-                            child: MaterialButton(
-                              color: AppColor.primaycolor,
-                              onPressed: () {
-                                controller.checkcoupon();
-                              },
-                              child: Text(
-                                "apply",
-                                style: TextStyle(
-                                    color: AppColor.white, fontSize: 17),
+                            child: Container(
+                              margin: EdgeInsets.only(right: 10 ),
+                              child: MaterialButton(
+                                color: AppColor.primaycolor,
+                                onPressed: () {
+                                  controller.checkcoupon();
+                                },
+                                child: Text(
+                                  "apply",
+                                  style: TextStyle(
+                                      color: AppColor.white, fontSize: 17),
+                                ),
                               ),
                             )),
                       ],

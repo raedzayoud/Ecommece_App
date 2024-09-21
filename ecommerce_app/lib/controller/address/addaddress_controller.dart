@@ -12,6 +12,7 @@ class AddaddressControllerImp extends AddaddressController {
   TextEditingController? name;
   TextEditingController? city;
   TextEditingController? street;
+  GlobalKey<FormState> formstate = GlobalKey<FormState>();
 
   StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
@@ -26,7 +27,8 @@ class AddaddressControllerImp extends AddaddressController {
   }
 
   addAddress() async {
-    statusRequest = StatusRequest.loading;
+     if (formstate.currentState!.validate()) {
+         statusRequest = StatusRequest.loading;
     update();
     var response = await addressData.addAddress(
         myServices.sharedPreferences.getString("id")!,
@@ -54,7 +56,10 @@ class AddaddressControllerImp extends AddaddressController {
       } else {
         statusRequest = StatusRequest.failed;
       }
-    }
+    
     update();
+     }
+ 
+  }
   }
 }
