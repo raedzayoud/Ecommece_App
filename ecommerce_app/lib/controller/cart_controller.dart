@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/core/function/handlingdata.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/cart_data.dart';
@@ -22,6 +23,7 @@ class CartControllerImp extends CartController {
   List<Catmodel> data = [];
   int nbreoccurenceorder = 0;
   int totalprice = 0;
+  int couponid=0;
   //couponModel? couponmodel;
 
   List<couponModel> listCouponData = [];
@@ -111,6 +113,7 @@ class CartControllerImp extends CartController {
         data.addAll(dataresponsive.map((e) => Catmodel.fromJson(e)));
         totalprice = response['pricecount']['price'] ?? 0;
         nbreoccurenceorder = int.parse(response['pricecount']['nbreoccurence']);
+        
       } else {
         statusRequest = StatusRequest.failed;
       }
@@ -134,9 +137,10 @@ class CartControllerImp extends CartController {
             .addAll(data.map((e) => couponModel.fromJson(e)).toList());
         discountcoupon = listCouponData[0].couponDiscount!;
         couponname = listCouponData[0].couponName;
+        couponid=listCouponData[0].couponId!;
       } else {
-        couponname=null;
-        discountcoupon=0;
+        couponname = null;
+        discountcoupon = 0;
         Get.snackbar(
           "Information", // Title
           "Your coupont is not found , Please enter a valid coupont", // Message
@@ -154,8 +158,8 @@ class CartControllerImp extends CartController {
   }
 
   resetCart() {
-    int nbreoccurenceorder = 0;
-    int totalprice = 0;
+    nbreoccurenceorder = 0;
+    totalprice = 0;
   }
 
   @override
@@ -164,9 +168,30 @@ class CartControllerImp extends CartController {
     view();
   }
 
+  goToCheckout() {
+    if(data.isEmpty){
+      return  Get.snackbar(
+          "Information", // Title
+          "Your basket is empty . You must at least have one product", // Message
+          snackPosition: SnackPosition.TOP, // Position of the snackbar
+          duration: Duration(seconds: 4), // Display duration
+          margin: EdgeInsets.all(10), // Margin around the snackbar
+          backgroundColor: Colors.black, // Set the background color to black
+          colorText:
+              Colors.white, // Optional: Set text color to white for contrast
+        );
+    }
+    Get.toNamed(AppRoutes.checkout,arguments: {
+      "couponid":couponid,
+      "priceorder":totalprice,
+      "discount":discountcoupon.toString(),
+    });
+  }
+
   @override
   void onInit() {
     couponcontroller = TextEditingController();
+
     view();
     super.onInit();
   }

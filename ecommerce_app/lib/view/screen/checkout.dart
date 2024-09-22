@@ -28,7 +28,9 @@ class Checkout extends StatelessWidget {
                 child: MaterialButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.checkout();
+                  },
                   color: AppColor.primaycolor,
                   child: Text(
                     "Checkout",
@@ -69,17 +71,13 @@ class Checkout extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  // Cardpaymentmethod(
-                  //   isAcive: true,
-                  //   title: "Cash on Delevriy",
-                  // ),
                   InkWell(
                       onTap: () {
-                        controller.ChoosePaymentMethod("cash");
+                        controller.ChoosePaymentMethod("0");
                       },
                       child: Cardpaymentmethod(
                         isActive:
-                            controller.paymentMethod == "cash" ? true : false,
+                            controller.paymentMethod == "0" ? true : false,
                         title: "Cash on Delevriy",
                       )),
                   SizedBox(
@@ -88,11 +86,11 @@ class Checkout extends StatelessWidget {
 
                   InkWell(
                     onTap: () {
-                      controller.ChoosePaymentMethod("card");
+                      controller.ChoosePaymentMethod("1");
                     },
                     child: Cardpaymentmethod(
                       isActive:
-                          controller.paymentMethod == "card" ? true : false,
+                          controller.paymentMethod == "1" ? true : false,
                       title: "Payement Cards",
                     ),
                   ),
@@ -120,10 +118,10 @@ class Checkout extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              controller.ChooseDelivery("Delivery");
+                              controller.ChooseDelivery("0");
                             },
                             child: Carddeliverytype(
-                              isAcive: controller.delevriyType == "Delivery"
+                              isAcive: controller.delevriyType == "0"
                                   ? true
                                   : false,
                               name: AppImageassets.delevriy,
@@ -135,10 +133,10 @@ class Checkout extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              controller.ChooseDelivery("Client");
+                              controller.ChooseDelivery("1");
                             },
                             child: Carddeliverytype(
-                              isAcive: controller.delevriyType == "Client"
+                              isAcive: controller.delevriyType == "1"
                                   ? true
                                   : false,
                               name: AppImageassets.delevriyclient,
@@ -152,7 +150,7 @@ class Checkout extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  controller.delevriyType == "Delivery"
+                  controller.delevriyType == "0"
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

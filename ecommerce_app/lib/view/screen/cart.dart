@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/controller/cart_controller.dart';
+import 'package:ecommerce_app/controller/productdetails_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/view/widget/cart/curstomtopappar.dart';
 import 'package:ecommerce_app/view/widget/cart/custombuttomcart.dart';
 import 'package:ecommerce_app/view/widget/cart/custombuttomnavigatorcart.dart';
@@ -15,18 +17,19 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CartControllerImp cartControllerImp= Get.put(CartControllerImp());
+    CartControllerImp cartControllerImp = Get.put(CartControllerImp());
     cartControllerImp.refreshPage();
     return Scaffold(
-      appBar: AppBar(
-        title: Text("My Cart"),
-        leading: IconButton(
+        appBar: AppBar(
+          title: Text("My Cart"),
+          leading: IconButton(
             icon: Icon(Icons.arrow_back, color: AppColor.white),
             onPressed: () {
+              //Get.offAllNamed(AppRoutes.home);
               Get.back();
             },
           ),
-      ),
+        ),
         bottomNavigationBar: Custombuttomnavigatorcart(),
         body: GetBuilder<CartControllerImp>(
           builder: (controller) => Handlingdataview(
@@ -35,9 +38,6 @@ class Cart extends StatelessWidget {
               color: AppColor.white,
               child: ListView(
                 children: [
-                  // Curstomtopappar(
-                  //   title: "My Cart",
-                  // ),
                   SizedBox(
                     height: 5,
                   ),
@@ -57,7 +57,7 @@ class Cart extends StatelessWidget {
                         controller.refreshPage();
                       },
                       count: "${controller.data[index].nbreoccurence}",
-                      price: "${ controller.data[index].price}",
+                      price: "${controller.data[index].price}",
                       title: "${controller.data[index].itemsName}",
                       imagename: "${controller.data[index].itemsImage}",
                     );

@@ -53,7 +53,10 @@ class AppLinkApi {
   
   //coupons
   static String checkcoupon = "$linkServeurName/coupon/checkcoupon.php";
-  
+
+  //orders
+  static String checkout = "$linkServeurName/order/checkout.php";
+
 
 
 

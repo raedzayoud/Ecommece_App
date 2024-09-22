@@ -14,7 +14,7 @@ abstract class ProductdetailsController extends GetxController {}
 
 class ProductdetailsControllerImp extends ProductdetailsController {
   late ItemsModel itemsModel;
-   //CartControllerImp cartControllerImp = Get.put(CartControllerImp());
+  //CartControllerImp cartControllerImp = Get.put(CartControllerImp());
   StatusRequest statusRequest = StatusRequest.none;
   int count = 0;
   List<Catmodel> data = [];
@@ -39,8 +39,8 @@ class ProductdetailsControllerImp extends ProductdetailsController {
   ];
 
   getcountcart(String itemsid) async {
-    statusRequest = StatusRequest.loading;
-    update();
+    //statusRequest = StatusRequest.loading;
+  //  update();
     var response = await cartData.getcountcart(
         myServices.sharedPreferences.getString("id")!, itemsid);
     if (response == null) {
@@ -60,7 +60,7 @@ class ProductdetailsControllerImp extends ProductdetailsController {
   }
 
   GoTocart() {
-   // cartControllerImp.refreshPage();
+    // cartControllerImp.refreshPage();
     Get.toNamed(AppRoutes.cart);
   }
 
@@ -150,5 +150,9 @@ class ProductdetailsControllerImp extends ProductdetailsController {
   void onInit() {
     initialData();
     super.onInit();
+  }
+
+  void refreshData() {
+    update();
   }
 }

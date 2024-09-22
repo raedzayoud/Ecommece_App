@@ -105,8 +105,8 @@ class Custombuttomnavigatorcart extends StatelessWidget {
                   Custombuttomcart(
                     content: "Orders ",
                     onPressed: () {
-                      Get.toNamed(AppRoutes.checkout);
-                    },
+                      controller.goToCheckout();
+                     },
                   ),
                 ],
               ),

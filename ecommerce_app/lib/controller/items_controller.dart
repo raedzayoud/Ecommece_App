@@ -72,7 +72,7 @@ class ItemsControllerImp extends ItemsController {
   
   @override
   getToProductDetails(ItemsModel itemsModel) {
-    statusRequest=StatusRequest.none;
+    statusRequest=StatusRequest.success;
     Get.toNamed(AppRoutes.productdetails,arguments: {
       "itemsModel":itemsModel
     });
