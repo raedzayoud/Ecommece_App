@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/controller/settings_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/imageassets.dart';
+import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +41,7 @@ class Settings extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 90,
+              height: 70,
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
@@ -59,6 +60,24 @@ class Settings extends StatelessWidget {
                       ),
                     ),
                     Divider(),
+                      ListTile(
+                      onTap: () {
+                       // controllerImp.goToAddress();
+                       Get.toNamed(AppRoutes.orders);
+                      },
+                      title: Text("Orders"),
+                      trailing: Icon(Icons.card_travel_outlined),
+                    ),
+                    Divider(),
+                      ListTile(
+                      onTap: () {
+                       // controllerImp.goToAddress();
+                      },
+                      title: Text("Archives"),
+                      trailing: Icon(Icons.archive_outlined),
+                    ),
+                    Divider(),
+                    
                     ListTile(
                       onTap: () {
                         controllerImp.goToAddress();

@@ -52,7 +52,11 @@ class LoginControlllerImp extends LoginControlller {
             services.sharedPreferences
                 .setString("age", response['data']['user_age'].toString());
             services.sharedPreferences.setString("step", "2");
+            FirebaseMessaging.instance.subscribeToTopic("users");
+            FirebaseMessaging.instance.subscribeToTopic(
+                "users${services.sharedPreferences.getString("id")}");
             Get.offNamed(AppRoutes.home);
+            print("users${services.sharedPreferences.getString("id")}");
           } else {
             Get.snackbar(
               "Email Verification Required",
@@ -63,7 +67,7 @@ class LoginControlllerImp extends LoginControlller {
                   Colors.black, // Optional: Customize the background color
               colorText: Colors.white, // Optional: Customize the text color
               duration: Duration(seconds: 7), // Add duration for the Snackbar
-               margin: EdgeInsets.all(10), 
+              margin: EdgeInsets.all(10),
             );
 
             Get.offAllNamed(AppRoutes.verifycodesignup,

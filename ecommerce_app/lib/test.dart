@@ -1,6 +1,5 @@
-import 'package:ecommerce_app/core/function/checkinternet.dart';
+import 'package:ecommerce_app/core/class/accesstoken.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 class Test extends StatefulWidget {
   const Test({super.key});
@@ -10,41 +9,50 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  var res;
-  initial() async {
-    res = await checkInternet();
-    print(res);
-  }
+  String? accessToken;
 
   @override
   void initState() {
-    initial();
     super.initState();
+    getAccessToken();
+  }
+
+  void getAccessToken() async {
+    AccessTokenFirebase accessTokenFirebase = AccessTokenFirebase();
+
+    try {
+      String token = await accessTokenFirebase.getAccessToken();
+      setState(() {
+        accessToken = token; // Update the accessToken state
+      });
+      print(token);
+    } catch (e) {
+      setState(() {
+        accessToken = "Error fetching token"; // Handle the error
+      });
+      print(e);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("test"),
+        title: const Text("Test"),
       ),
-      body: ListView(
-        children: [
-          OtpTextField(
-            numberOfFields: 5,
-            fieldWidth: 50,
-            borderRadius: BorderRadius.circular(30),
-            borderColor: Color(0xFF512DA8),
-            //set to true to show as box or false to show as dash
-            showFieldAsBox: true,
-            //runs when a code is typed in
-            onCodeChanged: (String code) {
-              //handle validation or checks here
-            },
-            //runs when every textfield is filled
-            onSubmit: (String verificationCode) {}, // end onSubmit
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Firebase Access Token:",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(accessToken ?? "Fetching token..."),
+          ],
+        ),
       ),
     );
   }

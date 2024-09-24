@@ -1,9 +1,11 @@
 import 'package:ecommerce_app/core/class/statusrequest.dart';
 import 'package:ecommerce_app/core/constant/routes.dart';
+import 'package:ecommerce_app/core/function/fcmconfig.dart';
 import 'package:ecommerce_app/core/function/handlingdata.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/data/datasource/remote/home_data.dart';
 import 'package:ecommerce_app/data/model/itemsmodel.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,6 +32,8 @@ class HomepageControllerImp extends HomepageController {
 
   @override
   void onInit() {
+    // FirebaseMessaging.instance.subscribeToTopic("users");
+   
     getData();
     initialData();
     super.onInit();
@@ -82,7 +86,7 @@ class SearchMixData extends GetxController {
   checkSearch(val) {
     if (val == "") {
       isSearch = false;
-      statusRequest=StatusRequest.none;
+      statusRequest = StatusRequest.none;
     }
     update();
   }

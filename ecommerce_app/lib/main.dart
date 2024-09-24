@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/binding.dart';
+import 'package:ecommerce_app/controller/locale_controller.dart';
 import 'package:ecommerce_app/core/constant/apptheme.dart';
 import 'package:ecommerce_app/core/services/services.dart';
 import 'package:ecommerce_app/routes.dart';
@@ -16,11 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(LocaleController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themeData, // Use the themeData here
       initialBinding: MyBinding(),
-      getPages: getPages,  // Ensure routes are correctly imported
+      getPages: getPages, // Ensure routes are correctly imported
     );
   }
 }
