@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/controller/orders_controller.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/data/model/ordermodel.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:jiffy/jiffy.dart';
 
@@ -83,7 +85,11 @@ class CardOrder extends GetView<OrdersController> {
                     )),
                 Spacer(),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.ordersdetails,arguments: {
+                      "orderdetails":ordermodel
+                    });
+                  },
                   child: Text("Details",
                       style: TextStyle(
                           fontSize: 16,

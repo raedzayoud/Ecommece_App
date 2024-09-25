@@ -18,4 +18,5 @@ class AppRoutes{
   static const String addaddress ="/addaddress";
   static const String checkout ="/checkout";
   static const String orders ="/orders";
+  static const String ordersdetails ="/ordersdetails";
 }
