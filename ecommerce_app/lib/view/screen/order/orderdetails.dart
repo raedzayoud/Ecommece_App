@@ -129,7 +129,7 @@ class Orderdetails extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: AppColor.secondcolor),
                   ),
-                  subtitle: Text("Mellitta Houmt Souk  Djerba "),
+                  subtitle: Text(" ${controller.ordermodel!.addressStreet}${controller.ordermodel!.addressCity}"),
                 ),
               ),
             )

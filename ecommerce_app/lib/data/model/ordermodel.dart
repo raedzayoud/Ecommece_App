@@ -10,29 +10,30 @@ class orderModel {
   String? ordersDatetime;
   int? orderTotalprice;
   int? ordersStatus;
-  Null? addressId;
-  Null? addressUsersid;
-  Null? addressName;
-  Null? addressCity;
-  Null? addressStreet;
+  int? addressId; // Allow this to be null
+  int? addressUsersid; // Allow this to be null
+  String? addressName;
+  String? addressCity;
+  String? addressStreet;
 
-  orderModel(
-      {this.ordersId,
-      this.ordersUserid,
-      this.ordersAddress,
-      this.ordersType,
-      this.ordersPaymentmethod,
-      this.ordersPricedelivery,
-      this.ordersPrice,
-      this.ordersCoupon,
-      this.ordersDatetime,
-      this.orderTotalprice,
-      this.ordersStatus,
-      this.addressId,
-      this.addressUsersid,
-      this.addressName,
-      this.addressCity,
-      this.addressStreet});
+  orderModel({
+    this.ordersId,
+    this.ordersUserid,
+    this.ordersAddress,
+    this.ordersType,
+    this.ordersPaymentmethod,
+    this.ordersPricedelivery,
+    this.ordersPrice,
+    this.ordersCoupon,
+    this.ordersDatetime,
+    this.orderTotalprice,
+    this.ordersStatus,
+    this.addressId,
+    this.addressUsersid,
+    this.addressName,
+    this.addressCity,
+    this.addressStreet,
+  });
 
   orderModel.fromJson(Map<String, dynamic> json) {
     ordersId = json['orders_id'];
@@ -46,8 +47,8 @@ class orderModel {
     ordersDatetime = json['orders_datetime'];
     orderTotalprice = json['order_totalprice'];
     ordersStatus = json['orders_status'];
-    addressId = json['address_id'];
-    addressUsersid = json['address_usersid'];
+    addressId = json['address_id']; // Leave this nullable
+    addressUsersid = json['address_usersid']; // Leave this nullable
     addressName = json['address_name'];
     addressCity = json['address_city'];
     addressStreet = json['address_street'];
@@ -66,8 +67,8 @@ class orderModel {
     data['orders_datetime'] = this.ordersDatetime;
     data['order_totalprice'] = this.orderTotalprice;
     data['orders_status'] = this.ordersStatus;
-    data['address_id'] = this.addressId;
-    data['address_usersid'] = this.addressUsersid;
+    data['address_id'] = this.addressId; // Allow null values to remain
+    data['address_usersid'] = this.addressUsersid; // Allow null values to remain
     data['address_name'] = this.addressName;
     data['address_city'] = this.addressCity;
     data['address_street'] = this.addressStreet;

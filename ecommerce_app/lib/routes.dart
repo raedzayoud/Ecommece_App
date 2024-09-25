@@ -54,4 +54,5 @@ List<GetPage<dynamic>>? getPages = [
   //orderdetails
   GetPage(name: AppRoutes.ordersdetails, page: () => Orderdetails()),
 
+
 ];

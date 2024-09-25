@@ -57,6 +57,7 @@ class AppLinkApi {
   //orders
   static String checkout = "$linkServeurName/order/checkout.php";
   static String orders = "$linkServeurName/order/orders.php";
+  static String ordersdetails = "$linkServeurName/order/details.php";
 
   //notifications
   static String notifications = "$linkServeurName/notifications.php";
