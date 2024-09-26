@@ -62,6 +62,29 @@ class OrdersController extends GetxController {
     update();
   }
 
+  deleteOrders(String orderid) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response =
+        await ordersData.deleteOrders(orderid);
+    if (response == null) {
+      statusRequest = StatusRequest.failed;
+    }
+    statusRequest = HandleData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+       Get.defaultDialog(
+           title: "Informations", middleText: "the order was deleted successfully");
+        refreshOrder() ;
+      } else {
+        // Get.defaultDialog(
+        //   title: "Warning", middleText: "Email or Phone aleardy exists");
+        statusRequest = StatusRequest.failed;
+      }
+    }
+    update();
+  }
+
   void refreshOrder() {
     getOrders();
   }

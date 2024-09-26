@@ -84,17 +84,33 @@ class CardOrder extends GetView<OrdersController> {
                           color: AppColor.primaycolor),
                     )),
                 Spacer(),
-                MaterialButton(
-                  onPressed: () {
-                    Get.toNamed(AppRoutes.ordersdetails,arguments: {
-                      "orderdetails":ordermodel
-                    });
-                  },
-                  child: Text("Details",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppColor.primaycolor)),
+                if (ordermodel.ordersStatus != 0)
+                  Container(
+                    width: 80,
+                    child: MaterialButton(
+                      onPressed: () {
+                        controller.deleteOrders(ordermodel.ordersId.toString());
+                        },
+                      child: Text("Delete",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: AppColor.primaycolor)),
+                    ),
+                  ),
+                Container(
+                  width: 85,
+                  child: MaterialButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.ordersdetails,
+                          arguments: {"orderdetails": ordermodel});
+                    },
+                    child: Text("Details",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: AppColor.primaycolor)),
+                  ),
                 )
               ],
             ),

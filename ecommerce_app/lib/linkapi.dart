@@ -1,5 +1,5 @@
 class AppLinkApi {
-  static String linkServeurName = "http://192.168.10.173/ecommerce";
+  static String linkServeurName = "http://192.168.72.52/ecommerce";
   //
 
   //===================================Image===================================//
@@ -58,6 +58,7 @@ class AppLinkApi {
   static String checkout = "$linkServeurName/order/checkout.php";
   static String orders = "$linkServeurName/order/orders.php";
   static String ordersdetails = "$linkServeurName/order/details.php";
+  static String ordersdelete = "$linkServeurName/order/delete.php";
 
   //notifications
   static String notifications = "$linkServeurName/notifications.php";
