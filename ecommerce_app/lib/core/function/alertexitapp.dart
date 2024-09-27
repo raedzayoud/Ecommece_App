@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -13,13 +14,13 @@ Future<bool> alertExitApp()  {
         onPressed: () {
           Get.back(result: false); // Don't exit the app
         },
-        child: Text("Cancel"),
+        child: Text("Cancel",style: TextStyle(color: AppColor.black),),
       ),
       ElevatedButton(
         onPressed: () {
           exit(0); // Exit the app
         },
-        child: Text("Confirm"),
+        child: Text("Confirm",style: TextStyle(color: AppColor.black)),
       ),
     ],
     

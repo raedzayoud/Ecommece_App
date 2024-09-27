@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/controller/homepage_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/function/alertexitapp.dart';
 import 'package:ecommerce_app/data/model/itemsmodel.dart';
 import 'package:ecommerce_app/linkapi.dart';
 import 'package:ecommerce_app/view/widget/customappar.dart';
@@ -20,61 +21,66 @@ class Home extends StatelessWidget {
     HomepageControllerImp controllerImp = Get.put(HomepageControllerImp());
     return GetBuilder<HomepageControllerImp>(
       builder: (controllerImp) => SafeArea(
-        child: Container(
-          color: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                // App Bar
-                Customappar(
-                  controller: controllerImp.searchcontroller!,
-                  titleappar: "Find Product",
-                  onPressedIcon: () {},
-                  onPressedSearch: () {
-                    controllerImp.onSearchItems();
-                  },
-                  onPressedFavourite: () {
-                    controllerImp.goToFavourite();
-                  },
-                  onChanged: (val) {
-                    controllerImp.checkSearch(val);
-                  },
-                ),
-                const SizedBox(height: 10), // Add spacing
-
-                // Handling Data View
-                Handlingdataview(
-                  statusRequest: controllerImp.statusRequest,
-                  widget: controllerImp.isSearch == false
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Customcardhome(
-                              body: "CashBack 20 %",
-                              title: "A summer surprise",
+        child: WillPopScope(
+          onWillPop: (){
+            return alertExitApp();
+          },
+          child: Container(
+            color: Colors.white,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // App Bar
+                  Customappar(
+                    controller: controllerImp.searchcontroller!,
+                    titleappar: "Find Product",
+                    onPressedIcon: () {},
+                    onPressedSearch: () {
+                      controllerImp.onSearchItems();
+                    },
+                    onPressedFavourite: () {
+                      controllerImp.goToFavourite();
+                    },
+                    onChanged: (val) {
+                      controllerImp.checkSearch(val);
+                    },
+                  ),
+                  const SizedBox(height: 10), // Add spacing
+          
+                  // Handling Data View
+                  Handlingdataview(
+                    statusRequest: controllerImp.statusRequest,
+                    widget: controllerImp.isSearch == false
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Customcardhome(
+                                body: "CashBack 20 %",
+                                title: "A summer surprise",
+                              ),
+                              const Customtexttitle(
+                                title: "Categories",
+                              ),
+                              const Listcategories(),
+                              // const Customtexttitle(
+                              //   title: "Offer For You",
+                              // ),
+                              // const Listitemshome(),
+                               const Customtexttitle(
+                                title: "Product For You",
+                              ),
+                              const Listitemshome(),
+                            ],
+                          )
+                        : Center(
+                            child: ListItemsSearch(
+                              itemsModel: controllerImp.dataItems,
                             ),
-                            const Customtexttitle(
-                              title: "Categories",
-                            ),
-                            const Listcategories(),
-                            const Customtexttitle(
-                              title: "Offer For You",
-                            ),
-                            const Listitemshome(),
-                            const Customtexttitle(
-                              title: "Product For You",
-                            ),
-                            const Listitemshome(),
-                          ],
-                        )
-                      : Center(
-                          child: ListItemsSearch(
-                            itemsModel: controllerImp.dataItems,
                           ),
-                        ),
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

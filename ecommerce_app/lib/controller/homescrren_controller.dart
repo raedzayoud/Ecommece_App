@@ -23,7 +23,7 @@ class HomeScrrenControllerImp extends HomescrrenController {
   Map<String, IconData> mp = {
     "home": Icons.home,
     "notification": Icons.notifications_active_outlined,
-    "Profile": Icons.person_pin_sharp,
+    "Profile": Icons.local_offer_outlined,
     "Settings": Icons.settings,
   };
   List<Widget> list = [
