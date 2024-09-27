@@ -17,6 +17,7 @@ import 'package:ecommerce_app/view/screen/homescreen.dart';
 import 'package:ecommerce_app/view/screen/itemscategories.dart';
 import 'package:ecommerce_app/view/screen/myfavourite.dart';
 import 'package:ecommerce_app/view/screen/onborading.dart';
+import 'package:ecommerce_app/view/screen/order/archives.dart';
 import 'package:ecommerce_app/view/screen/order/orderdetails.dart';
 import 'package:ecommerce_app/view/screen/order/orders.dart';
 import 'package:ecommerce_app/view/screen/productdetails.dart';
@@ -53,6 +54,7 @@ List<GetPage<dynamic>>? getPages = [
 
   //orderdetails
   GetPage(name: AppRoutes.ordersdetails, page: () => Orderdetails()),
+  GetPage(name: AppRoutes.archive, page: () => Archives()),
 
 
 ];

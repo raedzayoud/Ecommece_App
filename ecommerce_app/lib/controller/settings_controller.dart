@@ -41,6 +41,11 @@ class SettingsControllerImp extends SettingsController {
     
   }
 
+  goToArchives() {
+    Get.toNamed(AppRoutes.archive);
+    
+  }
+
   goToSettings() {
     Get.back();
   }

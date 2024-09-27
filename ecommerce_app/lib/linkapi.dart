@@ -59,7 +59,12 @@ class AppLinkApi {
   static String orders = "$linkServeurName/order/orders.php";
   static String ordersdetails = "$linkServeurName/order/details.php";
   static String ordersdelete = "$linkServeurName/order/delete.php";
+  static String ordersarchive = "$linkServeurName/order/archive.php";
 
   //notifications
   static String notifications = "$linkServeurName/notifications.php";
+
+  
+  //offers
+  static String offers = "$linkServeurName/offers.php";
 }

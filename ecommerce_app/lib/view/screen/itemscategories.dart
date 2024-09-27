@@ -16,7 +16,7 @@ class Itemscategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    ItemsControllerImp controller= Get.put(ItemsControllerImp());
-    FavouriteControllerImp favouriteControllerImp=Get.put(FavouriteControllerImp());
+   FavouriteControllerImp favouriteControllerImp=Get.put(FavouriteControllerImp());
 
     return Scaffold(
       body: SafeArea(

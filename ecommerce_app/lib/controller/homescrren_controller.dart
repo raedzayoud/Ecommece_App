@@ -4,6 +4,7 @@ import 'package:ecommerce_app/core/constant/color.dart';
 import 'package:ecommerce_app/core/constant/routes.dart';
 import 'package:ecommerce_app/view/screen/home.dart';
 import 'package:ecommerce_app/view/screen/notifications.dart';
+import 'package:ecommerce_app/view/screen/offers.dart';
 import 'package:ecommerce_app/view/screen/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,11 +29,7 @@ class HomeScrrenControllerImp extends HomescrrenController {
   List<Widget> list = [
     Home(),
     Notifications(),
-    Column(
-      children: [
-        Text("Profile"),
-      ],
-    ),
+    Offers(),
     Settings(),
   ];
 

@@ -17,6 +17,7 @@ class AppImageassets{
    static const String delevriy="$rootLottie/delevriy.json";
    static const String delevriyclient="$rootLottie/delevriyclient.json";
    static const String basket="$rootLottie/basket.json";
+   static const String information="$rootLottie/information.json";
 
 
 }

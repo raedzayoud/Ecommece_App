@@ -19,4 +19,5 @@ class AppRoutes{
   static const String checkout ="/checkout";
   static const String orders ="/orders";
   static const String ordersdetails ="/ordersdetails";
+  static const String archive ="/archive";
 }

@@ -1,8 +1,10 @@
 import 'package:ecommerce_app/controller/orderdetails_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
 import 'package:ecommerce_app/core/constant/color.dart';
+import 'package:ecommerce_app/core/constant/imageassets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class Orderdetails extends StatelessWidget {
   const Orderdetails({super.key});
@@ -20,9 +22,7 @@ class Orderdetails extends StatelessWidget {
                   widget: Container(
                     child: ListView(
                       children: [
-                        SizedBox(
-                          height: 40,
-                        ),
+                        Lottie.asset(AppImageassets.information, width: 300, height: 200),
                         Container(
                           height: 150,
                           child: Card(
@@ -89,8 +89,15 @@ class Orderdetails extends StatelessWidget {
                                         ),
                                       ]);
                                     }),
+                                    TableRow(children: [
+                                      SizedBox(height: 25),
+                                      SizedBox(height: 25),
+                                      SizedBox(height: 25),
+                                    ]),
                                   ],
+                                  
                                 ),
+                                
                                 Container(
                                   margin: EdgeInsets.only(top: 10),
                                   child: Text(
