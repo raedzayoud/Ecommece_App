@@ -23,6 +23,8 @@ class HomepageControllerImp extends HomepageController {
   TextEditingController? searchcontroller;
   List categories = [];
   List items = [];
+  List itemstopsellings = [];
+  List settings = [];
   bool isSearch = false;
   List<ItemsModel> dataItems = [];
   initialData() {
@@ -52,6 +54,8 @@ class HomepageControllerImp extends HomepageController {
       if (response['status'] == 'success') {
         categories.addAll(response['categories']);
         items.addAll(response['items']);
+        itemstopsellings.addAll(response['itemstopsellings']);
+        settings.addAll(response['settings']);
       } else {
         Get.defaultDialog(
             title: "Warning", middleText: "Email or Phone aleardy exists");

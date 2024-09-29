@@ -13,6 +13,9 @@ class Myfavourite extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(MyfavouriteControllerImp());
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Favourite Products "),
+      ),
       body: Container(
           color: AppColor.white,
           padding: EdgeInsets.all(10),
@@ -20,20 +23,20 @@ class Myfavourite extends StatelessWidget {
        //     id: 'favouriteList',
             builder: (controller) => ListView(
               children: [
-                 Customappar(
-                  controller: controller.searchcontroller!,
-                  titleappar: "Find Product",
-                  onPressedIcon: () {},
-                  onPressedSearch: () {
-                    controller.onSearchItems();
-                  },
-                  onPressedFavourite: () {
-                    controller.goToFavourite();
-                  },
-                  onChanged: (val) {
-                    controller.checkSearch(val);
-                  },
-                ),
+                //  Customappar(
+                //   controller: controller.searchcontroller!,
+                //   titleappar: "Find Product",
+                //   onPressedIcon: () {},
+                //   onPressedSearch: () {
+                //     controller.onSearchItems();
+                //   },
+                //   onPressedFavourite: () {
+                //     controller.goToFavourite();
+                //   },
+                //   onChanged: (val) {
+                //     controller.checkSearch(val);
+                //   },
+                // ),
                 SizedBox(
                   height: 20,
                 ),

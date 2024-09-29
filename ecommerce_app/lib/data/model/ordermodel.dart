@@ -10,8 +10,10 @@ class orderModel {
   String? ordersDatetime;
   int? orderTotalprice;
   int? ordersStatus;
-  int? addressId; // Allow this to be null
-  int? addressUsersid; // Allow this to be null
+  int? orderRating;
+  String? orderNoterating;
+  int? addressId;
+  int? addressUsersid;
   String? addressName;
   String? addressCity;
   String? addressStreet;
@@ -28,6 +30,8 @@ class orderModel {
     this.ordersDatetime,
     this.orderTotalprice,
     this.ordersStatus,
+    this.orderRating,
+    this.orderNoterating,
     this.addressId,
     this.addressUsersid,
     this.addressName,
@@ -47,8 +51,10 @@ class orderModel {
     ordersDatetime = json['orders_datetime'];
     orderTotalprice = json['order_totalprice'];
     ordersStatus = json['orders_status'];
-    addressId = json['address_id']; // Leave this nullable
-    addressUsersid = json['address_usersid']; // Leave this nullable
+    orderRating = json['order_rating'];
+    orderNoterating = json['order_noterating'];
+    addressId = json['address_id'];
+    addressUsersid = json['address_usersid'];
     addressName = json['address_name'];
     addressCity = json['address_city'];
     addressStreet = json['address_street'];
@@ -67,8 +73,10 @@ class orderModel {
     data['orders_datetime'] = this.ordersDatetime;
     data['order_totalprice'] = this.orderTotalprice;
     data['orders_status'] = this.ordersStatus;
-    data['address_id'] = this.addressId; // Allow null values to remain
-    data['address_usersid'] = this.addressUsersid; // Allow null values to remain
+    data['order_rating'] = this.orderRating;
+    data['order_noterating'] = this.orderNoterating;
+    data['address_id'] = this.addressId;
+    data['address_usersid'] = this.addressUsersid;
     data['address_name'] = this.addressName;
     data['address_city'] = this.addressCity;
     data['address_street'] = this.addressStreet;

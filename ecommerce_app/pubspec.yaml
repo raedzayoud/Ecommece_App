@@ -60,6 +60,7 @@ dependencies:
   flutter_ringtone_player: ^4.0.0+3
   jiffy: ^6.3.1
   url_launcher: ^6.3.0
+  rating_dialog: ^2.0.4
 
 dev_dependencies:
   flutter_test:

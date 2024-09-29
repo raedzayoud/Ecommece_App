@@ -22,7 +22,8 @@ class Orderdetails extends StatelessWidget {
                   widget: Container(
                     child: ListView(
                       children: [
-                        Lottie.asset(AppImageassets.information, width: 300, height: 200),
+                        Lottie.asset(AppImageassets.information,
+                            width: 300, height: 200),
                         Container(
                           height: 150,
                           child: Card(
@@ -72,8 +73,6 @@ class Orderdetails extends StatelessWidget {
                                         controller.dataorders.length, (index) {
                                       int price = controller
                                           .dataorders[index].itemsPrice!;
-                                      int dis = controller
-                                          .dataorders[index].itemsDiscount!;
                                       return TableRow(children: [
                                         Text(
                                           " ${controller.dataorders[index].itemsName}",
@@ -84,7 +83,7 @@ class Orderdetails extends StatelessWidget {
                                           textAlign: TextAlign.center,
                                         ),
                                         Text(
-                                          "${price - price * dis / 100}",
+                                          "${price}",
                                           textAlign: TextAlign.center,
                                         ),
                                       ]);
@@ -95,9 +94,7 @@ class Orderdetails extends StatelessWidget {
                                       SizedBox(height: 25),
                                     ]),
                                   ],
-                                  
                                 ),
-                                
                                 Container(
                                   margin: EdgeInsets.only(top: 10),
                                   child: Text(
@@ -116,22 +113,24 @@ class Orderdetails extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                       controller.ordermodel!.addressStreet!=null? Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5),
-                          child: Card(
-                            color: AppColor.white,
-                            child: ListTile(
-                              title: Text(
-                                "Shipping Address",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColor.secondcolor),
-                              ),
-                              subtitle: Text(
-                                  " ${controller.ordermodel!.addressStreet}${controller.ordermodel!.addressCity}"),
-                            ),
-                          ),
-                        ):Text(""),
+                        controller.ordermodel!.addressStreet != null
+                            ? Container(
+                                margin: EdgeInsets.symmetric(horizontal: 5),
+                                child: Card(
+                                  color: AppColor.white,
+                                  child: ListTile(
+                                    title: Text(
+                                      "Shipping Address",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColor.secondcolor),
+                                    ),
+                                    subtitle: Text(
+                                        " ${controller.ordermodel!.addressStreet}${controller.ordermodel!.addressCity}"),
+                                  ),
+                                ),
+                              )
+                            : Text(""),
                       ],
                     ),
                   ),

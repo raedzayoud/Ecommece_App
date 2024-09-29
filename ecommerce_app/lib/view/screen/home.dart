@@ -9,6 +9,7 @@ import 'package:ecommerce_app/view/widget/home/customcardhome.dart';
 import 'package:ecommerce_app/view/widget/home/customtexttitle.dart';
 import 'package:ecommerce_app/view/widget/home/listcategories.dart';
 import 'package:ecommerce_app/view/widget/home/listitemshome.dart';
+import 'package:ecommerce_app/view/widget/home/listtopsellings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hash_cached_image/hash_cached_image.dart';
@@ -22,7 +23,7 @@ class Home extends StatelessWidget {
     return GetBuilder<HomepageControllerImp>(
       builder: (controllerImp) => SafeArea(
         child: WillPopScope(
-          onWillPop: (){
+          onWillPop: () {
             return alertExitApp();
           },
           child: Container(
@@ -47,7 +48,7 @@ class Home extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 10), // Add spacing
-          
+
                   // Handling Data View
                   Handlingdataview(
                     statusRequest: controllerImp.statusRequest,
@@ -55,9 +56,10 @@ class Home extends StatelessWidget {
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Customcardhome(
-                                body: "CashBack 20 %",
-                                title: "A summer surprise",
+                              if(controllerImp.settings.isNotEmpty)
+                               Customcardhome(
+                                body: controllerImp.settings[0]['settings_body'],
+                                title: controllerImp.settings[0]['settings_title'],
                               ),
                               const Customtexttitle(
                                 title: "Categories",
@@ -67,7 +69,12 @@ class Home extends StatelessWidget {
                               //   title: "Offer For You",
                               // ),
                               // const Listitemshome(),
-                               const Customtexttitle(
+                              const Customtexttitle(
+                                title: "Top Sellings",
+                              ),
+                              const Listtopsellings(),
+
+                              const Customtexttitle(
                                 title: "Product For You",
                               ),
                               const Listitemshome(),
@@ -104,7 +111,7 @@ class ListItemsSearch extends GetView<HomepageControllerImp> {
         itemCount: itemsModel.length,
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: (){
+            onTap: () {
               controller.getToProductDetails(itemsModel[index]);
             },
             child: Card(
@@ -117,15 +124,17 @@ class ListItemsSearch extends GetView<HomepageControllerImp> {
                           "${AppLinkApi.imagesItems}/${itemsModel[index].itemsImage}",
                     ),
                   ),
-                  SizedBox(width: 10,),
+                  SizedBox(
+                    width: 10,
+                  ),
                   Expanded(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "${itemsModel[index].itemsName}",
-                        style:
-                            TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 15),
                       ),
                       SizedBox(
                         height: 5,
@@ -134,7 +143,7 @@ class ListItemsSearch extends GetView<HomepageControllerImp> {
                         "${itemsModel[index].categoriesName}",
                         style: TextStyle(),
                       ),
-                       SizedBox(
+                      SizedBox(
                         height: 5,
                       ),
                       Text(

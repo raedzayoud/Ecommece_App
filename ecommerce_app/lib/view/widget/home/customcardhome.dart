@@ -17,12 +17,12 @@ class Customcardhome extends StatelessWidget {
                         margin: EdgeInsets.only(bottom: 10, top: 20),
                         child: Text(
                           title,
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
                       subtitle: Text(
                         body,
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        style: TextStyle(color: Colors.white, fontSize: 29),
                       ),
                     ),
                     height: 150,

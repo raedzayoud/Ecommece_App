@@ -46,8 +46,8 @@ class ArchiveController extends GetxController {
     dataorders.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response =
-        await ordersData.getDataArchive(myServices.sharedPreferences.getString("id")!);
+    var response = await ordersData
+        .getDataArchive(myServices.sharedPreferences.getString("id")!);
     if (response == null) {
       statusRequest = StatusRequest.failed;
     }
@@ -67,6 +67,31 @@ class ArchiveController extends GetxController {
 
   void refreshOrder() {
     getOrdersArchive();
+  }
+
+  sendDataofRating(String orderid,String note, double rating) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await ordersData
+        .postRating(orderid,note,rating);
+    if (response == null) {
+      statusRequest = StatusRequest.failed;
+    }
+    statusRequest = HandleData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        // List data = response['data'];
+        // dataorders.addAll(data.map((e) => orderModel.fromJson(e)));
+          Get.defaultDialog(
+           title: "Information", middleText: "Your rating has been submitted successfully! Thank you for your valuable feedback! ");
+           refreshOrder();
+      } else {
+        // Get.defaultDialog(
+        //   title: "Warning", middleText: "Email or Phone aleardy exists");
+        statusRequest = StatusRequest.failed;
+      }
+    }
+    update();
   }
 
   @override

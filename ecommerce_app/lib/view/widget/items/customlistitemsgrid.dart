@@ -55,24 +55,24 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Raiting....",
-                          ),
-                          Spacer(),
-                          ...List.generate(
-                              3,
-                              (index) => Icon(
-                                    Icons.star,
-                                    size: 18,
-                                  ))
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   margin: EdgeInsets.only(top: 3),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.start,
+                    //     children: [
+                    //       Text(
+                    //         "Raiting....",
+                    //       ),
+                    //       Spacer(),
+                    //       ...List.generate(
+                    //           3,
+                    //           (index) => Icon(
+                    //                 Icons.star,
+                    //                 size: 18,
+                    //               ))
+                    //     ],
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 10,
                     ),
@@ -127,7 +127,7 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
                   )),
             if (itemsModel.itemsDiscounts != 0)
               Positioned(
-                  top: 251,
+                  top: 240,
                   left: 10,
                   child: Text(
                     "--------",
@@ -135,7 +135,7 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
                   )),
             if (itemsModel.itemsDiscounts != 0)
               Positioned(
-                top: 250,
+                top: 240,
                   left: 66,
                 child: Text(
                   "${itemsModel.itemsdiscount}\$",
