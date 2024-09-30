@@ -73,6 +73,8 @@ class Orderdetails extends StatelessWidget {
                                         controller.dataorders.length, (index) {
                                       int price = controller
                                           .dataorders[index].itemsPrice!;
+                                      int discount=controller
+                                          .dataorders[index].itemsDiscount!;
                                       return TableRow(children: [
                                         Text(
                                           " ${controller.dataorders[index].itemsName}",
@@ -83,7 +85,7 @@ class Orderdetails extends StatelessWidget {
                                           textAlign: TextAlign.center,
                                         ),
                                         Text(
-                                          "${price}",
+                                          "${discount==0?price:price-(price*discount)/100}",
                                           textAlign: TextAlign.center,
                                         ),
                                       ]);

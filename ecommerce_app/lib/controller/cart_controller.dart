@@ -95,7 +95,7 @@ class CartControllerImp extends CartController {
     return totalprice - ((totalprice * discountcoupon) / 100);
   }
 
-  @override
+@override
   view() async {
     statusRequest = StatusRequest.loading;
     update();
@@ -111,15 +111,23 @@ class CartControllerImp extends CartController {
         List dataresponsive = response['data'];
         data.clear();
         data.addAll(dataresponsive.map((e) => Catmodel.fromJson(e)));
-        totalprice = response['pricecount']['price'] ?? 0;
-        nbreoccurenceorder = int.parse(response['pricecount']['nbreoccurence']);
-        
+
+        if (response['pricecount'] is Map) {
+          totalprice = response['pricecount']['price'] ?? 0;
+          nbreoccurenceorder =
+              int.parse(response['pricecount']['nbreoccurence'] ?? '0');
+        } else {
+          totalprice = 0;
+          nbreoccurenceorder = 0;
+        }
       } else {
         statusRequest = StatusRequest.failed;
       }
     }
     update();
   }
+
+
 
   checkcoupon() async {
     statusRequest = StatusRequest.loading;

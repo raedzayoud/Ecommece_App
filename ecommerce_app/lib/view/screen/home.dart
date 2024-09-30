@@ -56,19 +56,14 @@ class Home extends StatelessWidget {
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if(controllerImp.settings.isNotEmpty)
                                Customcardhome(
-                                body: controllerImp.settings[0]['settings_body'],
-                                title: controllerImp.settings[0]['settings_title'],
+                                body: controllerImp.body,
+                                title: controllerImp.title,
                               ),
                               const Customtexttitle(
                                 title: "Categories",
                               ),
                               const Listcategories(),
-                              // const Customtexttitle(
-                              //   title: "Offer For You",
-                              // ),
-                              // const Listitemshome(),
                               const Customtexttitle(
                                 title: "Top Sellings",
                               ),
@@ -110,6 +105,8 @@ class ListItemsSearch extends GetView<HomepageControllerImp> {
         shrinkWrap: true,
         itemCount: itemsModel.length,
         itemBuilder: (context, index) {
+          int price=itemsModel[index].itemsPrice!;
+          int price1=itemsModel[index].itemsDiscounts!;
           return InkWell(
             onTap: () {
               controller.getToProductDetails(itemsModel[index]);
@@ -147,7 +144,7 @@ class ListItemsSearch extends GetView<HomepageControllerImp> {
                         height: 5,
                       ),
                       Text(
-                        "${itemsModel[index].itemsPrice}\$",
+                        "${itemsModel[index].itemsdiscount}\$",
                         style: TextStyle(color: AppColor.primaycolor),
                       ),
                     ],

@@ -84,7 +84,7 @@ class CardOrder extends GetView<OrdersController> {
                           color: AppColor.primaycolor),
                     )),
                 Spacer(),
-                if (ordermodel.ordersStatus != 0)
+                if (ordermodel.ordersStatus == 0)
                   Container(
                     width: 80,
                     child: MaterialButton(

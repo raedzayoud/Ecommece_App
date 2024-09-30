@@ -43,6 +43,18 @@ class CheckoutController extends GetxController {
   }
 
   checkout() async {
+    if(adressid=="0" && delevriyType=="0"){
+       return Get.snackbar(
+        "Error", // Title
+        "Please select an address", // Message
+        snackPosition: SnackPosition.TOP, // Position of the snackbar
+        duration: Duration(seconds: 4), // Display duration
+        margin: EdgeInsets.all(10), // Margin around the snackbar
+        backgroundColor: Colors.black, // Set the background color to black
+        colorText:
+            Colors.white, // Optional: Set text color to white for contrast
+      );
+    }
     if (paymentMethod == null || delevriyType == null)
       return Get.snackbar(
         "Error", // Title
@@ -50,7 +62,7 @@ class CheckoutController extends GetxController {
         snackPosition: SnackPosition.TOP, // Position of the snackbar
         duration: Duration(seconds: 4), // Display duration
         margin: EdgeInsets.all(10), // Margin around the snackbar
-        backgroundColor: Colors.red, // Set the background color to black
+        backgroundColor: Colors.black, // Set the background color to black
         colorText:
             Colors.white, // Optional: Set text color to white for contrast
       );

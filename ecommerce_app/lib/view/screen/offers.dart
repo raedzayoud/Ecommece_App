@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/offers_controller.dart';
 import 'package:ecommerce_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_app/view/widget/items/curstomoffers.dart';
 import 'package:ecommerce_app/view/widget/items/customlistitemsgrid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class Offers extends StatelessWidget {
               widget: ListView.builder(
                   itemCount: controller.dataItems.length,
                   itemBuilder: (context, index) {
-                    return Customlistitemsgrid(
+                    return Curstomoffers(
                         itemsModel: controller.dataItems[index]);
                   })),
         ));

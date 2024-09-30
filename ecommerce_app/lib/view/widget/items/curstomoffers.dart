@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hash_cached_image/hash_cached_image.dart';
 
-class Customlistitemsgrid extends GetView<ItemsControllerImp> {
+class Curstomoffers extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
   //final bool istakeit;
-  const Customlistitemsgrid({
+  const Curstomoffers({
     super.key,
     required this.itemsModel,
   });
@@ -21,7 +21,7 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
    // Get.put(ItemsControllerImp());
     return InkWell(
         onTap: () {
-          controller.getToProductDetails(itemsModel);
+        //  controller.getToProductDetails(itemsModel);
         },
         child: Stack(
           children: [
@@ -63,13 +63,16 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          child: Text(
-                            "${itemsModel.itemsPrice}\$",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: AppColor.secondcolor,
-                                fontWeight: FontWeight.bold),
+                          child: Container(
+                            margin: EdgeInsets.only(top: 23),
+                            child: Text(
+                              "${itemsModel.itemsPrice}\$",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColor.secondcolor,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                         GetBuilder<FavouriteControllerImp>(

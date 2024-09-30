@@ -27,6 +27,8 @@ class HomepageControllerImp extends HomepageController {
   List settings = [];
   bool isSearch = false;
   List<ItemsModel> dataItems = [];
+  String title = "";
+  String body = "";
   initialData() {
     username = myServices.sharedPreferences.getString("username");
     searchcontroller = TextEditingController();
@@ -34,8 +36,6 @@ class HomepageControllerImp extends HomepageController {
 
   @override
   void onInit() {
-    // FirebaseMessaging.instance.subscribeToTopic("users");
-   
     getData();
     initialData();
     super.onInit();
@@ -56,9 +56,11 @@ class HomepageControllerImp extends HomepageController {
         items.addAll(response['items']);
         itemstopsellings.addAll(response['itemstopsellings']);
         settings.addAll(response['settings']);
+        body = settings[0]['settings_body'];
+        title = settings[0]['settings_title'];
       } else {
-        Get.defaultDialog(
-            title: "Warning", middleText: "Email or Phone aleardy exists");
+        // Get.defaultDialog(
+        //     title: "Warning", middleText: "Email or Phone aleardy exists");
         statusRequest = StatusRequest.failed;
       }
     }

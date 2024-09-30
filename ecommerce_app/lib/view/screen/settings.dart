@@ -50,17 +50,17 @@ class Settings extends StatelessWidget {
                 color: AppColor.white,
                 child: Column(
                   children: [
-                    ListTile(
-                      onTap: () {},
-                      title: Text("Disable Notifications "),
-                      trailing: Switch(
-                        onChanged: (val) {
-                          controllerImp.isActivenotification(val);
-                        },
-                        value: controllerImp.isActive1,
-                      ),
-                    ),
-                    Divider(),
+                    // ListTile(
+                    //   onTap: () {},
+                    //   title: Text("Disable Notifications "),
+                    //   trailing: Switch(
+                    //     onChanged: (val) {
+                    //       controllerImp.isActivenotification(val);
+                    //     },
+                    //     value: controllerImp.isActive1,
+                    //   ),
+                    // ),
+                  //  Divider(),
                     ListTile(
                       onTap: () {
                         // controllerImp.goToAddress();
