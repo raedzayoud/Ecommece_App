@@ -25,7 +25,7 @@ class Orderdetails extends StatelessWidget {
                         Lottie.asset(AppImageassets.information,
                             width: 300, height: 200),
                         Container(
-                          height: 150,
+                         // height: 100.0 *controller.dataorders.length.toDouble(),
                           child: Card(
                             color: AppColor.white,
                             margin: EdgeInsets.symmetric(horizontal: 10),
@@ -84,23 +84,39 @@ class Orderdetails extends StatelessWidget {
                                           "${controller.dataorders[index].nbreoccurence}",
                                           textAlign: TextAlign.center,
                                         ),
+                                        // Text(
+                                        //   "${discount==0?price:price-(price*discount)/100}",
+                                        //   textAlign: TextAlign.center,
+                                        // ),
                                         Text(
-                                          "${discount==0?price:price-(price*discount)/100}",
+                                          "${controller.dataorders[index].cartPrice}",
                                           textAlign: TextAlign.center,
                                         ),
                                       ]);
                                     }),
                                     TableRow(children: [
-                                      SizedBox(height: 25),
-                                      SizedBox(height: 25),
-                                      SizedBox(height: 25),
+                                      SizedBox(height: 5),
+                                      SizedBox(height: 5),
+                                      SizedBox(height: 5),
                                     ]),
                                   ],
                                 ),
-                                Container(
+                                // Container(
+                                //   margin: EdgeInsets.only(top: 10),
+                                //   child: Text(
+                                //     "Total Price : ${controller.ordermodel!.orderTotalprice} \$",
+                                //     style: TextStyle(
+                                //         color: AppColor.secondcolor,
+                                //         fontWeight: FontWeight.bold,
+                                //         fontSize: 17),
+                                //     textAlign: TextAlign.center,
+                                //   ),
+                                // ),
+
+                                 Container(
                                   margin: EdgeInsets.only(top: 10),
                                   child: Text(
-                                    "Total Price : ${controller.ordermodel!.orderTotalprice} \$",
+                                    "Total Price : ${controller.ordermodel!.orderTotalprice!} \$",
                                     style: TextStyle(
                                         color: AppColor.secondcolor,
                                         fontWeight: FontWeight.bold,
@@ -113,7 +129,7 @@ class Orderdetails extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.0,
                         ),
                         controller.ordermodel!.addressStreet != null
                             ? Container(

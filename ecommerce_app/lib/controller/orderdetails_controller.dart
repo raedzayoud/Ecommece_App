@@ -7,47 +7,44 @@ import 'package:ecommerce_app/data/model/ordermodel.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-class OrderdetailsController extends GetxController{
-
+class OrderdetailsController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;
   OrdersData ordersData = OrdersData(Get.find());
   MyServices myServices = Get.find();
   List<Catmodel> dataorders = [];
 
-  orderModel ?ordermodel;
+  orderModel? ordermodel;
+
+  int totalPrice = 0;
 
   @override
   void onInit() {
-    ordermodel=Get.arguments['orderdetails'];
+    ordermodel = Get.arguments['orderdetails'];
     getOrders();
     super.onInit();
   }
-
-    getOrders() async {
-    dataorders.clear();
-    statusRequest = StatusRequest.loading;
-    update();
-    var response =
-        await ordersData.getDataDetails(ordermodel!.ordersId.toString());
-    if (response == null) {
+getOrders() async {
+  dataorders.clear();
+  statusRequest = StatusRequest.loading;
+  update();
+  
+  var response = await ordersData.getDataDetails(ordermodel!.ordersId.toString());
+  if (response == null) {
+    statusRequest = StatusRequest.failed;
+  }
+  
+  statusRequest = HandleData(response);
+  if (StatusRequest.success == statusRequest) {
+    if (response['status'] == 'success') {
+      List data = response['data'];
+      dataorders.addAll(data.map((e) => Catmodel.fromJson(e)));
+      // Convert priceoriginal from String to int
+     // totalPrice = int.tryParse(dataorders[0].priceoriginal!) ?? 0;
+    } else {
       statusRequest = StatusRequest.failed;
     }
-    statusRequest = HandleData(response);
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == 'success') {
-        List data = response['data'];
-        dataorders.addAll(data.map((e) => Catmodel.fromJson(e)));
-      } else {
-        // Get.defaultDialog(
-        //   title: "Warning", middleText: "Email or Phone aleardy exists");
-        statusRequest = StatusRequest.failed;
-      }
-    }
-    update();
   }
-
-
-
-
+  update();
+}
 
 }

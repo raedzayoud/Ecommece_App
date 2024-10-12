@@ -13,8 +13,9 @@ class Productdetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   ProductdetailsControllerImp controllerImp= Get.put(ProductdetailsControllerImp());
-   
+    ProductdetailsControllerImp controllerImp =
+        Get.put(ProductdetailsControllerImp());
+
     return Scaffold(
       bottomNavigationBar: Container(
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -73,19 +74,16 @@ class Productdetails extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      Bodytext(
-                        body: "Color",
-                        color: AppColor.primaycolor,
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Listsubtitiles(),
+                      // SizedBox(
+                      //   height: 15,
+                      // ),
+                      // Listsubtitiles(),
                       SizedBox(
                         height: 10,
                       ),
                       Quantityandprice(
-                        price: "${controllerImp.itemsModel.itemsDiscounts==0?controllerImp.itemsModel.itemsPrice:controllerImp.itemsModel.itemsdiscount}",
+                        price:
+                            "${controllerImp.itemsModel.itemsDiscounts == 0 ? controllerImp.itemsModel.itemsPrice : controllerImp.itemsModel.itemsdiscount}",
                         quantity: "${controllerImp.count}",
                         onAdd: () {
                           controllerImp.add();

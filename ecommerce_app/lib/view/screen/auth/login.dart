@@ -35,84 +35,88 @@ class Login extends StatelessWidget {
                 .copyWith(color: AppColor.grey),
           ),
         ),
-        body: WillPopScope(
-          onWillPop: () => alertExitApp(),
-          child: GetBuilder<LoginControlllerImp>(
-              builder: (controlllerImp) => HandlingdataRequest(
-                    statusRequest: controlllerImp.statusRequest,
-                    widget: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 15),
-                        color: Colors.white,
-                        padding: EdgeInsets.all(20),
-                        child: Form(
-                          key: controlllerImp.formstate,
-                          child: ListView(
-                            children: [
-                              Logoauth(),
-                              Customtexttitleauth(
-                                title: "Welcome Back",
-                              ),
-                              Customtextbodyauth(
-                                body:
-                                    "Sign in with your email and password Or continue with your social media",
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Curstomtextformauth(
-                                hintText: "Enter Your Email",
-                                iconData: Icons.email_outlined,
-                                label: "Email",
-                                mycontroller: controlllerImp.email,
-                                validator: (val) {
-                                  return validinput(val!, 5, 100, "email");
-                                },
-                              ),
-                              GetBuilder<LoginControlllerImp>(
-                                builder: (controlllerImp) =>
-                                    Curstomtextformauth(
-                                  obscturetext: controlllerImp.isshowpassword,
-                                  hintText: "Enter Your Password",
-                                  iconData: Icons.lock_outline,
-                                  label: "Password",
-                                  mycontroller: controlllerImp.password,
+        body: Container(
+          color: AppColor.white,
+          child: WillPopScope(
+            onWillPop: () => alertExitApp(),
+            child: GetBuilder<LoginControlllerImp>(
+                builder: (controlllerImp) => HandlingdataRequest(
+                      statusRequest: controlllerImp.statusRequest,
+                      widget: Container(
+                        width: double.infinity,
+                          margin: EdgeInsets.symmetric(horizontal: 15),
+                          color: Colors.white,
+                          padding: EdgeInsets.all(20),
+                          child: Form(
+                            key: controlllerImp.formstate,
+                            child: ListView(
+                              children: [
+                                Logoauth(),
+                                Customtexttitleauth(
+                                  title: "Welcome Back",
+                                ),
+                                Customtextbodyauth(
+                                  body:
+                                      "Sign in with your email and password Or continue with your social media",
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Curstomtextformauth(
+                                  hintText: "Enter Your Email",
+                                  iconData: Icons.email_outlined,
+                                  label: "Email",
+                                  mycontroller: controlllerImp.email,
                                   validator: (val) {
-                                    return validinput(val!, 4, 100, "password");
-                                  },
-                                  onTapIcon: () {
-                                    controlllerImp.showpassword();
+                                    return validinput(val!, 5, 100, "email");
                                   },
                                 ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  controlllerImp.goToForgetPassword();
-                                },
-                                child: Text(
-                                  "Forget Password ?",
-                                  textAlign: TextAlign.end,
+                                GetBuilder<LoginControlllerImp>(
+                                  builder: (controlllerImp) =>
+                                      Curstomtextformauth(
+                                    obscturetext: controlllerImp.isshowpassword,
+                                    hintText: "Enter Your Password",
+                                    iconData: Icons.lock_outline,
+                                    label: "Password",
+                                    mycontroller: controlllerImp.password,
+                                    validator: (val) {
+                                      return validinput(val!, 4, 100, "password");
+                                    },
+                                    onTapIcon: () {
+                                      controlllerImp.showpassword();
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Custombuttonauth(
-                                content: "Sign In",
-                                onPressed: () {
-                                  controlllerImp.Login();
-                                },
-                              ),
-                              SizedBox(
-                                height: 13,
-                              ),
-                              Customtextsignup(
-                                textone: "Don't have an account ? ",
-                                textwo: "Sign up ",
-                                onTap: () {
-                                  controlllerImp.goToSignup();
-                                },
-                              ),
-                            ],
-                          ),
-                        )),
-                  )),
+                                InkWell(
+                                  onTap: () {
+                                    controlllerImp.goToForgetPassword();
+                                  },
+                                  child: Text(
+                                    "Forget Password ?",
+                                    textAlign: TextAlign.end,
+                                  ),
+                                ),
+                                Custombuttonauth(
+                                  content: "Sign In",
+                                  onPressed: () {
+                                    controlllerImp.Login();
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 13,
+                                ),
+                                Customtextsignup(
+                                  textone: "Don't have an account ? ",
+                                  textwo: "Sign up ",
+                                  onTap: () {
+                                    controlllerImp.goToSignup();
+                                  },
+                                ),
+                              ],
+                            ),
+                          )),
+                    )),
+          ),
         ));
   }
 }

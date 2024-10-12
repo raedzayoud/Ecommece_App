@@ -72,11 +72,11 @@ class ProductdetailsControllerImp extends ProductdetailsController {
     update();
   }
 
-  addCart(String itemsid) async {
+  addCart(String itemsid,String price,String itemsdiscount) async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.addCart(
-        myServices.sharedPreferences.getString("id")!, itemsid);
+        myServices.sharedPreferences.getString("id")!, itemsid,price,itemsdiscount);
     if (response == null) {
       statusRequest = StatusRequest.failed;
     }
@@ -133,7 +133,7 @@ class ProductdetailsControllerImp extends ProductdetailsController {
   }
 
   add() {
-    addCart("${itemsModel.itemsId}");
+    addCart("${itemsModel.itemsId}","${itemsModel.itemsPrice}","${itemsModel.itemsDiscounts}");
     count++;
     update();
   }

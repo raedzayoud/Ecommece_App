@@ -71,6 +71,12 @@ class CardOrder extends GetView<OrdersController> {
                   "Order Status : ${controller.getOrderStatus(ordermodel.ordersStatus.toString())}  ",
                   style: TextStyle(fontSize: 15),
                 )),
+                Container(
+                margin: EdgeInsets.only(left: 20),
+                child: Text(
+                  "Coupon Status : ${controller.getCouponStatus(ordermodel.ordersCoupon.toString())}  ",
+                  style: TextStyle(fontSize: 15),
+                )),
             Divider(),
             Row(
               children: [

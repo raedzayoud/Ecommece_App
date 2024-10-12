@@ -26,6 +26,17 @@ class OrdersController extends GetxController {
       return "Payement Card";
     }
   }
+  
+  String getCouponStatus(String val) {
+  if (val == "0") {
+    return "The total price reflects the original amount without any coupons applied.";
+  } else if (val == "1") {
+    return "The total price is discounted due to the application of a coupon.";
+  } else {
+    return "Invalid coupon status.";
+  }
+}
+
 
   getOrderStatus(val) {
     if (val == "0") {

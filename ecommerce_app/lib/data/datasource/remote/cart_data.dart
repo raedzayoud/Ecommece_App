@@ -6,9 +6,14 @@ class CartData {
 
   CartData(this.crud);
 
-  addCart(String userid, String itemsid) async {
-    var response = await crud
-        .postData(AppLinkApi.addCart, {"userid": userid, "itemsid": itemsid});
+  addCart(
+      String userid, String itemsid, String price, String itemsdiscount) async {
+    var response = await crud.postData(AppLinkApi.addCart, {
+      "userid": userid,
+      "itemsid": itemsid,
+      "cartitemsprice": price,
+      "itemsdiscount": itemsdiscount
+    });
     // Return the data based on whether the response is a success or failure
     return response.fold(
       (left) {

@@ -48,7 +48,7 @@ class Cart extends StatelessWidget {
                     return Customorder(
                       onAdd: () async {
                         await controller
-                            .addCart("${controller.data[index].itemsId}");
+                            .addCart("${controller.data[index].itemsId}","${controller.data[index].itemsPrice}","${controller.data[index].itemsDiscount}");
                         controller.refreshPage();
                       },
                       onRemove: () async {
