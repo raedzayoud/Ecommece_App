@@ -10,7 +10,7 @@ import 'package:hash_cached_image/hash_cached_image.dart';
 
 class Customlistitemsgrid extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
-  //final bool istakeit;
+  
   const Customlistitemsgrid({
     super.key,
     required this.itemsModel,
@@ -18,14 +18,15 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-   // Get.put(ItemsControllerImp());
     return InkWell(
-        onTap: () {
-          controller.getToProductDetails(itemsModel);
-        },
-        child: Stack(
-          children: [
-            Card(
+      onTap: () {
+        controller.getToProductDetails(itemsModel);
+      },
+      child: Stack(
+        children: [
+          Container(
+            height: 300,
+            child: Card(
               color: AppColor.white,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -35,30 +36,30 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
                   children: [
                     Hero(
                       tag: "${itemsModel.itemsId}",
-                      child: HashCachedImage(
-                        imageUrl: AppLinkApi.imagesItems +
-                            "/" +
-                            itemsModel.itemsImage!,
-                        height: 150,
+                      child: SizedBox(
+                        height: 150,  // Specify the image height directly
+                        child: HashCachedImage(
+                          imageUrl: AppLinkApi.imagesItems +
+                              "/" +
+                              itemsModel.itemsImage!,
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
+                    SizedBox(height: 10),
+                    Container(
+                      child: Expanded(
+                        child: Text(
+                          "${itemsModel.itemsName}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: AppColor.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
-                    Text(
-                      "${itemsModel.itemsName} ",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: AppColor.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -67,71 +68,71 @@ class Customlistitemsgrid extends GetView<ItemsControllerImp> {
                             "${itemsModel.itemsPrice}\$",
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontSize: 14,
-                                color: AppColor.secondcolor,
-                                fontWeight: FontWeight.bold),
+                              fontSize: 14,
+                              color: AppColor.secondcolor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         GetBuilder<FavouriteControllerImp>(
-                            builder: (controller) => IconButton(
-                                onPressed: () {
-                                  if (controller
-                                          .isfavorite[itemsModel.itemsId] ==
-                                      "1") {
-                                    controller.setFavoutite(
-                                        itemsModel.itemsId, "0");
-                                    controller.removeFavourite(
-                                        itemsModel.itemsId.toString());
-                                  } else {
-                                    controller.setFavoutite(
-                                        itemsModel.itemsId, "1");
-
-                                    controller.addFavourite(
-                                        itemsModel.itemsId.toString());
-                                  }
-                                },
-                                icon: Icon(
-                                  controller.isfavorite[itemsModel.itemsId] ==
-                                          "1"
-                                      ? Icons.favorite
-                                      : Icons.favorite_outline,
-                                  color: AppColor.secondcolor,
-                                ))),
+                          builder: (controller) => IconButton(
+                            onPressed: () {
+                              if (controller.isfavorite[itemsModel.itemsId] == "1") {
+                                controller.setFavoutite(itemsModel.itemsId, "0");
+                                controller.removeFavourite(itemsModel.itemsId.toString());
+                              } else {
+                                controller.setFavoutite(itemsModel.itemsId, "1");
+                                controller.addFavourite(itemsModel.itemsId.toString());
+                              }
+                            },
+                            icon: Icon(
+                              controller.isfavorite[itemsModel.itemsId] == "1"
+                                  ? Icons.favorite
+                                  : Icons.favorite_outline,
+                              color: AppColor.secondcolor,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],
                 ),
               ),
             ),
-            if (itemsModel.itemsDiscounts != 0)
-              Positioned(
-                  top: 5,
-                  child: Image.asset(
-                    AppImageassets.sales,
-                    width: 40,
-                  )),
-            if (itemsModel.itemsDiscounts != 0)
-              Positioned(
-                  top: 240,
-                  left: 10,
-                  child: Text(
-                    "--------",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-            if (itemsModel.itemsDiscounts != 0)
-              Positioned(
-                top: 240,
-                  left: 66,
-                child: Text(
-                  "${itemsModel.itemsdiscount}\$",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: AppColor.secondcolor,
-                      fontWeight: FontWeight.bold),
+          ),
+          if (itemsModel.itemsDiscounts != 0)
+            Positioned(
+              top: 5,
+              child: Image.asset(
+                AppImageassets.sales,
+                width: 40,
+              ),
+            ),
+          if (itemsModel.itemsDiscounts != 0)
+            Positioned(
+              top: 252,
+              left: 10,
+              child: Text(
+                "--------",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          if (itemsModel.itemsDiscounts != 0)
+            Positioned(
+              top: 252,
+              left: 66,
+              child: Text(
+                "${itemsModel.itemsdiscount}\$",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: AppColor.secondcolor,
+                  fontWeight: FontWeight.bold,
                 ),
-              )
-          ],
-        ));
+              ),
+            ),
+        ],
+      ),
+    );
   }
 }

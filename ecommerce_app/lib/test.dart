@@ -17,7 +17,7 @@ class _TestState extends State<Test> {
     getAccessToken();
   }
 
-  void getAccessToken() async {
+   getAccessToken() async {
     AccessTokenFirebase accessTokenFirebase = AccessTokenFirebase();
 
     try {
@@ -32,6 +32,9 @@ class _TestState extends State<Test> {
       });
       print(e);
     }
+
+    return accessToken;
+
   }
 
   @override
